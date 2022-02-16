@@ -5,20 +5,18 @@ sidebar_position: 1
 # Getting Started
 
 Since this project will run in a web browser, you will need an HTML file to
-provide a canvas to render graphics on and a style sheet to provide some
-essential styling to that HTML. You can find the boilerplate HTML and CSS for
-this tutorial below.
-
-Copy and paste the HTML and CSS code below into the appropriate panels of your
-code playground. Then click the "Run" button. The result panel of your code
-playground should now be filled with a dark purple color
-
-You will not need to modify the HTML or CSS for the remainder of this tutorial.
+provide a canvas to render graphics on, a style sheet to provide some
+essential styling to that HTML, and a JavaScript file for the code that will
+generate your graphics.
 
 ## HTML
 
+This is the only HTML required for this tutorial. Copy and paste this code into
+the HTML panel of your code playground.
+
 Note the `<canvas>` element in the code below. This is the element that your
-graphics will actually render to.
+graphics will be rendered on. The `id` attribute with the value
+`generative-demo` is how your JavaScript code will find the canvas.
 
 ```html
 <!DOCTYPE html>
@@ -26,7 +24,8 @@ graphics will actually render to.
 
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" 
+          content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <title>Generative Art with three.js</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script type="module" src="./index.js"></script>
@@ -39,10 +38,25 @@ graphics will actually render to.
 </html>
 ```
 
+The `<meta>` tag with the `name="viewport"` attribute ensures that the graphics
+will render correctly on a mobile browser. This is useful if you want to view
+your project on a phone or tablet.
+
+:::important
+The `<script>` tag that imports your JavaScript file has the attribute
+`type="module"`. This **_must_** be present. The three.js library uses a
+feature of modern JavaScript known as modules. Any JavaScript file that uses
+three.js must be imported with this attribute.
+:::
+
 ## CSS
 
-The `.three` class in the code below will be applied to the `<canvas>` element
-in the HTML code. This will cause your graphics to fill the browser window.
+This is the only CSS required for the tutorial. Copy and paste this code into
+the CSS panel of your code playground.
+
+Note the block that identifies the `.three` class in the CSS code below. The
+styles in this block will be applied to the `<canvas>` element in the HTML code
+and cause your graphics to fill the browser window.
 
 ```css
 body {
@@ -60,3 +74,13 @@ body {
   height: 100vh;
 }
 ```
+
+## Moving Forward
+
+From this point forward, you will not need to edit the HTML or CSS. You may
+make changes to them if you wish, but this tutorial assumes that you have not
+modified the HTML or CSS.
+
+Once you have copied these code blocks into their respective panels in your
+code playground, click the "Run" button. The result panel should now be filled
+with a dark purple color.
