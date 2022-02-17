@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Getting Started
+# Setting up your code
 
 Since this project will run in a web browser, you will need an HTML file to
 provide a canvas to render graphics on, a style sheet to provide some

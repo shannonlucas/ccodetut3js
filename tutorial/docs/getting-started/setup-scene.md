@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Setting up the Scene
+# Setting up the scene
 
 All three-dimensional graphics scenes have some core elements in common
 regardless of which graphics library you are using.
