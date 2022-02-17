@@ -4,6 +4,12 @@ sidebar_position: 1
 
 # Introduction
 
+* this should not be your first programming project
+* the goal is not to teach you javascript
+* not a goal to make a game
+* not a goal to find you a programming job
+* following three.js code conventions with SCREAMING_SNAKE_CASE
+
 ## Purpose
 
 ## End Goal

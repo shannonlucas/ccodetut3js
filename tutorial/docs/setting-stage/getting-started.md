@@ -75,6 +75,31 @@ body {
 }
 ```
 
+## JavaScript
+
+To get the JavaScript code started, you will need to import the three.js
+library. The tree.js documentation recommends importing the library from the
+SkyPack content delivery network (CDN). The code snippet below will import the
+library from that source.
+
+This import specifies the version that was in use when this tutorial was
+written (0.137.5). By historical convention, three.js is imported with the name
+`THREE`, and you will see it capitalized this way in other tutorials.
+
+Copy and paste this code into the JavaScript panel of your code playground.
+
+```javascript
+import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
+```
+
+:::caution
+If you do not specify a version, the most recently released version will be
+imported. Importing the latest and greatest might sound like a good idea, but
+updates to three.js sometimes change things in ways that can break your project.
+So whenever you import the library, you should specify the version you are
+using.
+:::
+
 ## Moving Forward
 
 From this point forward, you will not need to edit the HTML or CSS. You may
