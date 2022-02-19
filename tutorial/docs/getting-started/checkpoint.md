@@ -1,9 +1,15 @@
 ---
 id: module-code
 sidebar_position: 10
+title: Checkpoint
 ---
 
-# The code so far
+Below you will find all the code you've assembled up to this point in the
+tutorial. Comments have been added to the JavaScript code to reinforce what each
+section of code does.
+
+If you spent some time experimenting, you can copy and paste the code here to
+return things to where they should be for the next tutorial module.
 
 ## JavaScript
 
@@ -12,7 +18,8 @@ sidebar_position: 10
 import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
 
 /**
- * Create a renderer and attach it to the HTML element with the provided ID.
+ * Create a renderer and attach it to the HTML canvas element with the provided 
+ * ID.
  *
  * @param {string} elementId
  * @returns {THREE.WebGLRenderer} the newly created renderer
@@ -46,7 +53,7 @@ import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
 /**
  * Create a perspective camera that looks at the center of the scene.
  * 
- * @returns {THREE.Camera}
+ * @returns {THREE.Camera} the newly created camera
  */
  function setUpCamera() {
   const aspectRatio = window.innerWidth / window.innerHeight;
@@ -61,8 +68,10 @@ import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
  * 
  * @param {string} elementId the ID of the HTML <canvas> element to render the
  *        graphics to.
- * @returns {object} an object containing the renderer, camera, and scene
- *          objects.
+ * @returns {object} an object containing the following properties:
+ *                     * renderer - the newly created renderer
+ *                     * camera - the newly created camera
+ *                     * scene - the newly created scene
  */
 function setUpGraphics(elementId) {
   const renderer = setUpRenderer(elementId);

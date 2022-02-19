@@ -1,0 +1,63 @@
+---
+sidebar_position: 4
+---
+
+# Compute behavior changes
+
+```javascript
+/**
+ * Grow (or shrink) the given cell based on its growth rate.
+ *
+ * @param {object} currentCell the cell to grow or shrink
+ * @returns {object} a new cell object that has grown (or shrank)
+ */
+function nextCellBehavior(currentCell) {
+  let { size, growth, maxSize, minSize } = currentCell;
+  size = size + growth;
+
+  // Make sure the new size fits within the cell's maximum and minimum
+  if (growth > 0) {
+    size = Math.min(size, maxSize);
+  } else {
+    size = Math.max(size, minSize);
+  }
+
+  // If the new size is at the cell's maximum or minimum size, reverse the
+  // direction of growth.
+  if (size === minSize || size === maxSize) {
+    growth = growth * -1;
+  }
+
+  return {
+    size,
+    growth,
+    maxSize,
+    minSize,
+  };
+}
+```
+
+```javascript
+/**
+ * Create a new behavior grid where each cell in the given grid has been
+ * resized according to its current growth rate.
+ *
+ * @param {Array<Array<object>>} currentState
+ * @returns {Array<Array<object>>} a two dimensional array of the cells
+ */
+function nextBehaviorGrid(currentState) {
+  const width = currentState.length;
+  let cells = [];
+
+  for (let x = 0; x < width; x++) {
+    const height = currentState[x].length;
+    cells[x] = [];
+
+    for (let y = 0; y < height; y++) {
+      cells[x][y] = nextCellBehavior(currentState[x][y]);
+    }
+  }
+
+  return cells;
+}
+```
