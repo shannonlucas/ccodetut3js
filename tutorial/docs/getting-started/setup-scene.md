@@ -4,25 +4,6 @@ sidebar_position: 2
 
 # Setting up the scene
 
-All three-dimensional graphics scenes have some core elements in common
-regardless of which graphics library you are using.
-
-* One or more objects to be the subject of the scene. These are the things you
-  want people to see when they look at what you've created. This could be
-  something simple such as a single cube or a complex animation of many detailed
-  objects.
-* One or more light sources so the objects in the scene will be visible. There
-  are situations where the absence of a light source can be used for artistic
-  intent, but you will use light sources in this tutorial.
-* A camera to provide a view of the scene. What the camera "sees" is what gets
-  displayed on your display.
-* A scene to contain the objects, lights, and camera. The scene is an a
-  container that coordinates the various items that affect what gets shown on
-  your display.
-* A renderer to translate the three-dimensional scene into pixels on your
-  display.
-* An animation loop to keep your scene updated.
-
 As you progress through this section, copy and paste each block of JavaScript
 code at the end of the JavaScript panel of your code playground.
 
@@ -67,23 +48,25 @@ The function below accepts a scene object (you will create one soon) and adds
 two `PointLight` light sources to it. You can think of a point light as a
 candle: it shines equally in all directions.
 
-The first light, `light2` is magenta, and `light2` is cyan. These lights are
-positioned using the `.position.set` method on each light. The `.position.set`
-method takes three parameters: the `x`, `y`, and `z` coordinates of the light.
+The parameter being passed to `PointLight` is the color of the light. This must
+be a string with a hexadecimal color code as you would use in HTML or CSS. The
+first light, `light1` is magenta, and `light2` is cyan.
 
-For now, they are positioned in an arbitrary fashion that will work for the
-project you are building in this tutorial.
+The lights are positioned using the `.position.set` method on each light. The
+`.position.set` method takes three parameters: the `x`, `y`, and `z`
+coordinates of the light. For now, they are positioned in an arbitrary fashion
+that will work for the project you are building in this tutorial.
 
 Note that this function does not return anything since it adds the lights
 directly to the scene object you will pass to it as a parameter.
 
 ```javascript
  function setUpLights(scene) {
-  const light1 = new THREE.PointLight("#ea00d9", 1);
+  const light1 = new THREE.PointLight("#ea00d9"); // magenta
   light1.position.set(8, 3, 4);
   scene.add(light1);
 
-  const light2 = new THREE.PointLight("#0abdc6", 1);
+  const light2 = new THREE.PointLight("#0abdc6"); // cyan
   light2.position.set(-6, 0, 2);
   scene.add(light2);
 }
@@ -104,10 +87,11 @@ you will use light sources.
 
 The camera is what "sees" your scene. What it sees is what gets rendered on your
 display. For this tutorial you will use a `PerspectiveCamera`. This will cause
-objects to be rendered like they would appear in the real world with objects
-in the distance appearing smaller than objects that are close.
+objects to be rendered like they would appear in the real world: objects in the
+distance will appear smaller than objects that are closer.
 
-Despite its short length, there are some important things happening here.
+Despite its short length, there are some important things happening in this
+function.
 
 The first parameter that `PerspectiveCamera` takes is the vertical field of
 view measured in degrees. Typical human vision has a vertical range of 150
@@ -164,39 +148,15 @@ function setUpGraphics(elementId) {
 const { renderer, camera, scene } = setUpGraphics('#generative-demo');
 ```
 
-## The animation loop
+## three.js documentation
 
-```javascript
-// How many milliseconds to wait between drawing each frame. Divide one second
-// (1000 milliseconds) by the target frame rate of 60 frames per second.
-const MILLISECONDS_PER_FRAME = 1000 / 60;
+In this section, you used several three.js classes. The documentation for those
+classes are linked below.
 
-//
-let latestFrame = 0;
+* [PerspectiveCamera](https://threejs.org/docs/index.html#api/en/cameras/PerspectiveCamera)
+* [PointLight](https://threejs.org/docs/index.html#api/en/lights/PointLight)
+* [Scene](https://threejs.org/docs/index.html#api/en/scenes/Scene)
+* [WebGLRenderer](https://threejs.org/docs/index.html#api/en/renderers/WebGLRenderer)
 
-/**
- * Animates the scene.
- * 
- * This function is called every time computer refreshes its display. The
- * refresh rate will vary from one computer to another and may even vary on the
- * same computer.
- * 
- * To make the animation consistent from one computer to another, the function
- * only updates the animation at a set interval.
- */
-function animate() {
-  const now = Date.now();
-  const elapsedTime = now - latestFrame;
-
-  if (elapsedTime >= MILLISECONDS_PER_FRAME) {
-    renderer.render(scene, camera);
-    latestFrame = now;
-  }
-}
-
-// Start the animation loop
-renderer.setAnimationLoop(animate);
-```
-
-[^1]: [https://en.wikipedia.org/wiki/Field_of_view#Humans_and_animals](https://en.wikipedia.org/wiki/Field_of_view#Humans_and_animals)
-[^2]: [https://github.com/mrdoob/three.js/issues/6259](https://github.com/mrdoob/three.js/issues/6259)
+[^1]: [Field of view (Wikipedia entry)](https://en.wikipedia.org/wiki/Field_of_view#Humans_and_animals)
+[^2]: [Use of SI units in three.js (GitHub Issue)](https://github.com/mrdoob/three.js/issues/6259)

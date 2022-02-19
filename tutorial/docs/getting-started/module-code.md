@@ -34,11 +34,11 @@ import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
  * @param {THREE.Scene} scene 
  */
  function setUpLights(scene) {
-  const light1 = new THREE.PointLight("#ea00d9", 1);
+  const light1 = new THREE.PointLight("#ea00d9"); // magenta
   light1.position.set(8, 3, 4);
   scene.add(light1);
 
-  const light2 = new THREE.PointLight("#0abdc6", 1);
+  const light2 = new THREE.PointLight("#0abdc6"); // cyan
   light2.position.set(-6, 0, 2);
   scene.add(light2);
 }
