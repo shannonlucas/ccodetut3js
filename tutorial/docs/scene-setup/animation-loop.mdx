@@ -20,7 +20,7 @@ So far, you've focused only on the mechanics of how a scene gets rendered.
 You'll now move on to when a scene gets rendered and updated.
 
 The animation loop is an activity that your computer carries out every time it
-updates, or *refreshes*, the image on your display. Programs can attach
+updates, or _refreshes_, the image on your display. Programs can attach
 functions to this loop to cause their own graphics to be updated when your
 computer refreshes the display.
 
@@ -30,12 +30,12 @@ code at the end of the JavaScript panel of your code playground.
 ## Refresh rates and frame rates
 
 Your computer redraws the content on your display many times every second. How
-often this happens is referred to as the *refresh rate*. You may have seen this
+often this happens is referred to as the _refresh rate_. You may have seen this
 term in the product data for monitors or televisions with values such as 60Hz
 or 120Hz. The unit Hz (Hertz) means number of times per second. So a display
 with a 60Hz refresh rate will redraw the screen 60 times every second.
 
-The *frame rate* of your animation is how many times your animation updates each
+The _frame rate_ of your animation is how many times your animation updates each
 second. The frame rate is sometimes the same value as the refresh rate, but it
 is independent. An animation's frame rate is affected by factors such as how
 much detail is in the animation and how powerful the computer rendering it is.
@@ -74,7 +74,7 @@ let lastFrameTime = 0;
 
 You now need a function that you can attach to the animation loop. Your web
 browser will call this function whenever your computer refreshes your display.
-When the browser calls the function, it pass a single parameter to it that
+When the browser calls the function, it passes a single parameter to it that
 indicates the time in milliseconds since your animation started.
 
 As you learned earlier, you don't necessarily want to update your animation on
