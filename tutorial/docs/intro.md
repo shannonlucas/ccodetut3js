@@ -1,15 +1,23 @@
 ---
+id: introduction
 sidebar_position: 1
 slug: /
+title: Introduction
 ---
-
-# Introduction
 
 * this should not be your first programming project
 * the goal is not to teach you javascript
+* will not teach HTML or CSS
 * not a goal to make a game
 * not a goal to find you a programming job
 * following three.js code conventions with SCREAMING_SNAKE_CASE
+
+## Who this tutorial is for
+
+## How this tutorial is structured
+
+    * modules
+    * checkpoints
 
 ## Purpose
 

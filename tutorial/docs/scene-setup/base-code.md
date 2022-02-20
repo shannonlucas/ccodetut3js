@@ -1,13 +1,25 @@
 ---
-sidebar_position: 1
+id: base-code
+title: Base code
+sidebar_position: 2
+description: The basic HTML, CSS, and JavaScript to get started with a three.js
+             project
+keywords:
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
 ---
-
-# Setting up your code
 
 Since this project will run in a web browser, you will need an HTML file to
 provide a canvas to render graphics on, a style sheet to provide some
 essential styling to that HTML, and a JavaScript file for the code that will
 generate your graphics.
+
+All of the code you will assemble in this tutorial builds on this initial
+foundation.
 
 ## HTML
 
@@ -16,7 +28,7 @@ the HTML panel of your code playground.
 
 Note the `<canvas>` element in the code below. This is the element that your
 graphics will be rendered on. The `id` attribute with the value
-`generative-demo` is how your JavaScript code will find the canvas.
+`creative-code` is how your JavaScript code will find the canvas.
 
 ```html
 <!DOCTYPE html>
@@ -32,7 +44,7 @@ graphics will be rendered on. The `id` attribute with the value
   </head>
 
   <body>
-    <canvas id="generative-demo" class="three"></canvas>
+    <canvas id="creative-code" class="three"></canvas>
   </body>
 
 </html>
@@ -93,11 +105,12 @@ import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
 ```
 
 :::caution
-If you do not specify a version, the most recently released version will be
-imported. Importing the latest and greatest might sound like a good idea, but
-updates to three.js sometimes change things in ways that can break your project.
-So whenever you import the library, you should specify the version you are
-using.
+If you do not explicitly specify a version, the most recently released version
+of three.js will be imported. Importing the latest and greatest might sound like
+a good idea, but updates to three.js sometimes change things in ways that can
+break your project. So whenever you import the library, you should specify the
+version you are using. This will ensure that your project continues to work
+even after new versions of three.js are released.
 :::
 
 ## Moving Forward
@@ -107,5 +120,7 @@ make changes to them if you wish, but this tutorial assumes that you have not
 modified the HTML or CSS.
 
 Once you have copied these code blocks into their respective panels in your
-code playground, click the "Run" button. The result panel should now be filled
-with a dark purple color.
+code playground, run the code. The result panel should now be filled with a
+dark purple color.
+
+![asset required](../../static/img/asset-required.png "Asset Required")

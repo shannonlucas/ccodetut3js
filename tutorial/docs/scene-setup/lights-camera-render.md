@@ -1,0 +1,212 @@
+---
+id: lights-camera-render
+title: Lights, camera, render
+sidebar_position: 3
+description: Setting up the lights, camera, and renderer in a three.js scene.
+keywords:
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
+---
+
+The lights, camera, and renderer are the core functional parts your scene needs
+in order to render the objects you want your viewer to see.
+
+As you progress through this section, copy and paste each block of JavaScript
+code at the end of the JavaScript panel of your code playground.
+
+## Adding lights to the scene
+
+You need lights to make the objects in your scene visible. Otherwise, your
+scene will be completely dark.
+
+The function below accepts a scene object (you will create one soon) and adds
+two `PointLight` light sources to it. You can think of a point light as a
+candle: it shines equally in all directions.
+
+The parameter being passed to `PointLight` is the color of the light. This must
+be a string with a hexadecimal color code as you would use in HTML or CSS. The
+first light, `light1` is magenta, and `light2` is cyan.
+
+The lights are positioned using the `.position.set` method on each light. The
+`.position.set` method takes three parameters: the `x`, `y`, and `z`
+coordinates of the light. For now, they are positioned in an arbitrary fashion
+that will work for the project you are building in this tutorial.
+
+Note that this function does not return anything since it adds the lights
+directly to the scene object you will pass to it as a parameter.
+
+```javascript
+ function setUpLights(scene) {
+  const light1 = new THREE.PointLight("#ea00d9"); // magenta
+  light1.position.set(8, 3, 4);
+  scene.add(light1);
+
+  const light2 = new THREE.PointLight("#0abdc6"); // cyan
+  light2.position.set(-6, 0, 2);
+  scene.add(light2);
+}
+```
+
+:::tip
+When you copied the CSS for this tutorial, you may have noticed that the
+background color was not black.
+
+If your lights are in the wrong place, many (or all) of the objects in your
+scene might be in a shadow and will be rendered as black. If your background is
+also black, you won't be able to see them, and it might take you some time to
+figure out where the problem actually is. If your background has a slight color,
+you will be able to see these objects as silhouettes against that color.
+
+When you start a new project, pick a background color, even if you intend to
+have a black background in the finished scene.
+:::
+
+## Adding the camera
+
+The camera is what "sees" your scene. What it sees is what gets rendered on your
+display. For this tutorial you will use a `PerspectiveCamera`. This will cause
+objects to be rendered like they would appear in the real world: objects in the
+distance will appear smaller than objects that are closer.
+
+Despite its short length, there are some important things happening in this
+function.
+
+The first parameter that `PerspectiveCamera` takes is the vertical field of
+view measured in degrees. Typical human vision has a vertical range of 150
+degrees with a 60 degree vertical range for central vision. This camera is set
+to 75 degrees which provides a reasonable default for most scenes.
+
+The second parameter is the aspect ratio. You may have seen this written as a
+ratio such as 16:9, 21:9, or 4:3 in the context of televisions or computer
+displays. In short it's the ratio of a display's width to its height. The
+camera needs this information to make sure that a square object appears square
+on your display. The function computes the ratio by dividing your browser
+window's width by its height.
+
+The last two parameters specify the closest distance to and farthest distance
+from the camera, respectively, that an object in the scene can be and still be
+visible. three.js uses Standard International (SI) units. So in this case, the
+camera can see things as close as 10 centimeters and as far away as 1,000
+meters.
+
+The function then sets the camera to look at the center, or origin, of the
+scene. Finally, it returns the newly created camera object.
+
+```javascript
+ function setUpCamera() {
+  const aspectRatio = window.innerWidth / window.innerHeight;
+  const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+  camera.lookAt(0, 0, 0);
+
+  return camera;
+}
+```
+
+## Setting up the renderer
+
+The render is what actually converts your 3D scene into pixels on your display.
+You will use a `WebGLRenderer` for this project. WebGL is a low-level
+programming interface supported by modern browsers. There are other types of
+renderers in three.js, but they are for specific, advanced use cases that aren't
+covered in this tutorial.
+
+The function below accepts the ID of an HTML `<canvas>` element as its only
+parameter. It then queries the HTML for that element and passes it to the
+renderer when you create it on the next line.
+
+Note that one of the options passed to the `WebGLRenderer` is `alpha: true`.
+This option tells the renderer to use a transparent background and allow the
+background color you specified in your CSS to show through. If you did not set
+this option, the background of the scene would be black.
+
+The function then sets its size to fill the entire browser window. Setting the
+pixel ratio ensures that the image isn't blurry if you are using a high
+resolution display (HiDPI or "Retina" displays).
+
+Finally, the function returns the renderer object it created.
+
+```javascript
+ function setUpRenderer(elementId) {
+  const canvas = document.querySelector(elementId);
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  return renderer;
+}
+```
+
+## Putting it together
+
+Now that you've assembled the lights, camera, and renderer, it's time to put
+those pieces together. You will need a function that sets up these pieces.
+
+The function below does just that. First, the renderer and camera are created.
+Then, a scene object is created and passed to the `setUpLights` function you
+assembled earlier. All the essential parts are now in place to render a 3D
+scene to your display.
+
+After setting up the lights, the function adds a quality of life enhancement to
+the scene. Ideally, your scene should keep its relative position and size when
+the browser window is resized. This inner bit of code is called an "event
+listener," and it gets called whenever the window is resized. It tells the
+camera and renderer objects about the window's new size. Event listeners are
+outside the scope of this tutorial, but you can find a learning resource in the
+additional resources section below.
+
+Finally, the function returns an object containing the newly created renderer,
+camera, and scene objects as the properties `renderer`, `camera`, and `scene`, 
+respectively.
+
+```javascript
+function setUpGraphics(elementId) {
+  const renderer = setUpRenderer(elementId);
+  const camera = setUpCamera();
+  const scene = new THREE.Scene();
+  setUpLights(scene);
+
+  // If the browser window gets resized, the camera and renderer have to be
+  // updated. This block of code handles that.
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  return { renderer, camera, scene };
+}
+```
+
+All that remains is to actually invoke your `setUpGraphics` function to create
+the renderer, camera, and scene. Note that the `renderer`, `camera`, and `scene`
+objects created by the code below are created outside of a function which makes
+them available to all other functions in the same JavaScript file.
+
+You will make use of these values when you build the animation loop in the next
+section.
+
+```javascript
+const { renderer, camera, scene } = setUpGraphics('#creative-code');
+```
+
+:::note
+The `setUpGraphics` function also accepts the ID of an HTML `<canvas>` element
+as a parameter and then passes it on to the `setUpRenderer` function. You may be
+asking why the ID of the HTML element is not just given since the name is known.
+
+One of the goals of this tutorial is to provide you with a set of building
+blocks that you can later reuse in your own projects. By passing the ID of the
+HTML element as a parameter, you can use the same functions in projects that
+render to an HTML element with a different ID.
+
+You might also want to render the same graphics in more than one place on the
+same page. Since HTML element IDs must be unique on a page, passing the ID as a
+parameter allows you to reuse the function rather than creating a copy for each
+element ID.
+:::

@@ -1,7 +1,15 @@
 ---
 id: module-code
-sidebar_position: 10
 title: Checkpoint
+sidebar_position: 6
+description: All of the tutorial code built up to this point in the tutorial.
+keywords:
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
 ---
 
 Below you will find all the code you've assembled up to this point in the
@@ -81,7 +89,7 @@ function setUpGraphics(elementId) {
 
   // If the browser window gets resized, the camera and renderer have to be
   // updated. This block of code handles that.
-  window.addEventListener("resize", () => {
+  window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
@@ -91,7 +99,48 @@ function setUpGraphics(elementId) {
   return { renderer, camera, scene };
 }
 
-const { renderer, camera, scene } = setUpGraphics('#generative-demo');
+const { renderer, camera, scene } = setUpGraphics('#creative-code');
+
+// How many milliseconds to wait between drawing each frame. Divide one second
+// (1000 milliseconds) by the target frame rate of 60 frames per second.
+const MILLISECONDS_PER_FRAME = 1000 / 60;
+
+// To control the speed of the animation, the time between frames is tracked.
+// This is initially set to zero since no frame has been rendered yet.
+let lastFrameTime = 0;
+
+/**
+ * Animates the scene.
+ * 
+ * This function is called every time computer refreshes its display. The
+ * refresh rate will vary from one computer to another and may even vary on the
+ * same computer.
+ * 
+ * To make the animation consistent from one computer to another, the function
+ * only updates the animation at a set interval.
+ * 
+ * @param {number} animationTime - the amount of time, in milliseconds, since
+ *        the animation started.
+ */
+function animate(animationTime) {
+  const elapsedTime = animationTime - lastFrameTime;
+
+  if (elapsedTime >= MILLISECONDS_PER_FRAME) {
+    update();
+    renderer.render(scene, camera);
+    lastFrameTime = animationTime;
+  }
+}
+
+// Start the animation loop
+renderer.setAnimationLoop(animate);
+
+/**
+ * Contains the code to handle updating a specific project's animation.
+ */
+function update() {
+  // Your project's animation code will go here.
+}
 ```
 
 ## HTML
@@ -110,7 +159,7 @@ const { renderer, camera, scene } = setUpGraphics('#generative-demo');
   </head>
 
   <body>
-    <canvas id="generative-demo" class="three"></canvas>
+    <canvas id="creative-code" class="three"></canvas>
   </body>
 
 </html>

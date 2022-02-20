@@ -36,6 +36,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'dark',
+        respectPrefersColorScheme: true,
+      },
       navbar: {
         title: 'Creative coding with three.js',
         logo: {
@@ -54,17 +58,12 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
             title: 'Resources',
             items: [
+              {
+                label: 'GitHub Repository',
+                href: 'https://github.com/facebook/docusaurus',
+              },
               {
                 label: 'three.js',
                 href: 'https://threejs.org/',
@@ -75,15 +74,6 @@ const config = {
               },
             ],
           },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
-          },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Shannon Lucas`,
       },
@@ -91,6 +81,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      hideableSidebar: true,
     }),
 };
 
