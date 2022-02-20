@@ -1,8 +1,18 @@
 ---
+id: group-behavior
+title: Building group behavior
 sidebar_position: 3
+sidebar_label: Group behavior
+description: Using state information to enable group behavior
+keywords:
+  - animation
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
 ---
-
-# Building group behavior
 
 ```javascript
 /**

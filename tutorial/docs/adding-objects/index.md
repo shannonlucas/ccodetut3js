@@ -1,10 +1,9 @@
 ---
-id: next-steps
-title: Next steps
+id: adding-objects
+title: Adding objects to the scene
 sidebar_position: 1
-description: Where to go from here
+description: Adding objects to the scene
 keywords:
-  - animation
   - creative coding
   - graphics
   - javascript

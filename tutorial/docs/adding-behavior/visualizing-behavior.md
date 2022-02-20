@@ -1,0 +1,50 @@
+---
+id: visualizing-behavior
+title: Visualizing behavior
+sidebar_position: 5
+sidebar_label: Visualizing behavior
+description: Applying the behaviors to the visual objects
+keywords:
+  - animation
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
+---
+
+```javascript
+/**
+ * Look at the state of each cell and update the 3D visual to match.
+ * 
+ * @param {Array<Array<THREE.object>>} gridState the cell grid of cells to
+ *        render
+ * @param {Array<Array<THREE.mesh>>} gridView the corresponding grid of 3D 
+ *        visuals
+ */
+function applyBehaviorToVisuals(gridState, gridView) {
+  for (let x = 0; x < gridView.length; x++) {
+    for (let y = 0; y < gridView[x].length; y++) {
+      let size = gridState[x][y].size;
+
+      gridView[x][y].scale.set(size, size, size);
+    }
+  }
+}
+
+// This is how fast the cells will grow or shrink.
+const GROWTH_RATE = 0.015;
+
+// Create the initial starting state of the cell visuals
+let state = buildBehaviorGrid(GRID_SIZE, MAX_CELL_SIZE, MIN_CELL_SIZE, GROWTH_RATE);
+
+// The number of radians the grid rotates each frame
+const ROTATION_SPEED = 0.0075;
+
+function update() {
+  applyBehaviorToVisuals(state, cellVisuals);
+  state = nextBehaviorGrid(state);
+  cellGroup.rotation.y += ROTATION_SPEED;
+}
+```

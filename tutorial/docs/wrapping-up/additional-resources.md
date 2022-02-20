@@ -1,8 +1,17 @@
 ---
+id: additional-resources
+title: Additional resources
 sidebar_position: 2
+description: More stuff to learn
+keywords:
+  - animation
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
 ---
-
-# Additional resources
 
 ## Module 1
 

@@ -1,5 +1,15 @@
 ---
+id: tracking-state
+title: Tracking an object's state
 sidebar_position: 1
+sidebar_label: Tracking state
+description: Using state information to enable behavior
+keywords:
+  - animation
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
 ---
-
-# Tracking cell state

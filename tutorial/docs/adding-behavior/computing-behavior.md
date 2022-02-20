@@ -1,8 +1,18 @@
 ---
+id: computing-behavior
+title: Computing behavior changes
 sidebar_position: 4
+sidebar_label: Computing behavior
+description: Computing behavior changes
+keywords:
+  - animation
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
 ---
-
-# Compute behavior changes
 
 ```javascript
 /**

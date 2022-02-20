@@ -1,8 +1,8 @@
 ---
-id: next-steps
-title: Next steps
-sidebar_position: 1
-description: Where to go from here
+id: wrapping-up
+title: Wrapping Up
+sidebar_position: 4
+description: Project wrap up
 keywords:
   - animation
   - creative coding

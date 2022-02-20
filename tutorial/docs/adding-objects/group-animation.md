@@ -1,0 +1,15 @@
+---
+id: group-animation
+title: Animating the object group
+sidebar_position: 5
+sidebar_label: Group animation
+description: Animating a group of objects as a whole
+keywords:
+  - animation
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
+---

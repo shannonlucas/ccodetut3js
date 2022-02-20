@@ -1,8 +1,18 @@
 ---
+id: object-behavior
+title: Building object behavior
 sidebar_position: 2
+sidebar_label: Object behavior
+description: Using state information to enable behavior
+keywords:
+  - animation
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
 ---
-
-# Building cell behavior
 
 ```javascript
 /**
