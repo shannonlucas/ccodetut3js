@@ -37,3 +37,12 @@ html[data-theme='dark'] {
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+/* Article figures have a border */
+article img {
+  border: 1px solid black;
+}
+
+html[data-theme='dark'] article img {
+  border: 1px solid darkgray;
+}
