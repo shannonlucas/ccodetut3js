@@ -1,7 +1,7 @@
 ---
 id: group-animation
 title: Animating the object group
-sidebar_position: 3
+sidebar_position: 4
 sidebar_label: Group animation
 description: Animating a group of objects as a whole
 keywords:
@@ -13,3 +13,21 @@ keywords:
   - 3D
   - tutorial
 ---
+
+## Positioning the camera
+
+```javascript
+// Move the camera far enough from our cells that we can see all of them.
+camera.position.set(0, 0, GRID_SIZE * (MAX_CELL_SIZE + CELL_SPACING));
+```
+
+## Spinning the grid
+
+```javascript
+// The number of radians the grid rotates each frame
+const ROTATION_SPEED = 0.0075;
+
+function update() {
+  cellGroup.rotation.y += ROTATION_SPEED;
+}
+```

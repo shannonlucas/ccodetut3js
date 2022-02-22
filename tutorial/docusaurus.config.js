@@ -46,13 +46,13 @@ const config = {
           alt: 'Site logo',
           src: 'img/logo.svg',
         },
-        items: [
-          {
-            href: 'https://github.com/shannonlucas/generative-threejs',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
+        // items: [
+        //   {
+        //     href: 'https://github.com/shannonlucas/generative-threejs',
+        //     label: 'GitHub',
+        //     position: 'right',
+        //   },
+        // ],
       },
       footer: {
         style: 'dark',
@@ -60,10 +60,10 @@ const config = {
           {
             title: 'Resources',
             items: [
-              {
-                label: 'GitHub Repository',
-                href: 'https://github.com/facebook/docusaurus',
-              },
+              // {
+              //   label: 'GitHub Repository',
+              //   href: 'https://github.com/facebook/docusaurus',
+              // },
               {
                 label: 'three.js',
                 href: 'https://threejs.org/',
