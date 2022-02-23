@@ -2,7 +2,7 @@
 id: quick-demo
 title: A quick demo
 sidebar_label: Quick demo
-sidebar_position: 4
+sidebar_position: 5
 pagination_label: A quick demo
 description: A quick animated demo of the work done so far in the tutorial.
 keywords:
@@ -15,17 +15,11 @@ keywords:
   - tutorial
 ---
 
-So far, you've done a _lot_ of work, but you haven't been able to see any
-outcomes of that work. The overall goal of this module has been to guide you
-through building a foundation that can be used both for this tutorial and your
-future projects.
+So far, you've done a _lot_ of work, but you haven't been able to see any outcomes of that work. The overall goal of this module has been to guide you through building a foundation that can be used both for this tutorial and your future projects.
 
-Now you will create a quick demo to verify that the code you've assembled so is
-working as intended.
+Now you will create a quick demo to verify that the code you've assembled so is working as intended.
 
-Remove your empty `update` function and replace it with the code below. There
-are a few things in the code below that you haven't seen yet. You will learn
-about these in the next module.
+Remove your empty `update` function and replace it with the code below. There are a few things in the code below that you haven't seen yet. You will learn about these in the next module.
 
 ```javascript
 // -----------------------------------------------------------------------------
@@ -46,44 +40,16 @@ function update() {
 // -----------------------------------------------------------------------------
 ```
 
-After you copy and paste this code into your code playground, run the code. If
-you have assembled everything correctly, you will see a rotating cube like
-the one in the figure below.
+After you copy and paste this code into your code playground, run the code. If you have assembled everything correctly, you will see a rotating cube like the one in the figure below.
 
 ![Animation of a rotating cube produced by the demo at the end of this module](./assets/scene-setup-demo.gif "This module's demo")
 
-If you don't see a rotating cube, review your code to make sure you didn't miss
-anything during assembly. You can also compare your code with the code listed in
-this module's [checkpoint](./checkpoint.mdx).
+If you don't see a rotating cube, review your code to make sure you didn't miss anything during assembly. You can also compare your code with the code listed in this module's [checkpoint](./checkpoint.mdx).
 
-When you are done with the demo and, replace it with the empty `update` function
-from the previous section.
+When you are done with the demo, replace its code with the empty `update` function from the previous section:
 
 ```javascript
 function update() {
   // Your project's animation code will go here.
 }
 ```
-
-## Optional exercises
-
-If you would like to experiment with the demo before moving on to the next
-module, here are some ideas to try.
-
-* Pick one of the lights and try changing some of its properties. For example,
-  change its color or position. Experiment with one light at a time so that you
-  can see how changing one affects the scene.
-* In the demo's `update` function, change the rotation speeds to be different
-  values. Observe how this affects the cube's behavior.
-* Change the value of `MILLISECONDS_PER_FRAME` to a different value such as
-  `1000 / 30` or `1000 / 120`. What changes do you notice?
-* In the demo code, replace `THREE.BoxGeometry()` with
-  `THREE.DodecahedronGeometry()`. What differences, if any, do you notice in
-  how the light and shadows interact with this shape?
-
-## Moving forward
-
-If you have done any experimenting with the exercises, be sure to restore your
-code to its previous state before moving on to the next module. If you are
-unsure what you have changed, you can get your code back to the tutorial state
-by copying it from this module's [checkpoint](./checkpoint.mdx).

@@ -3,8 +3,7 @@ id: base-code
 title: Base code
 sidebar_position: 2
 sidebar_label: Base code
-description: The basic HTML, CSS, and JavaScript to get started with a three.js
-             project
+description: The basic HTML, CSS, and JavaScript to get started with a three.js project
 keywords:
   - creative coding
   - graphics
@@ -14,22 +13,15 @@ keywords:
   - tutorial
 ---
 
-Since this project will run in a web browser, you will need an HTML file to
-provide a canvas to render graphics on, a style sheet to provide some
-essential styling to that HTML, and a JavaScript file for the code that will
-generate your graphics.
+Since this project will run in a web browser, you will need an HTML file to provide a canvas to render graphics on, a style sheet to provide some essential styling to that HTML, and a JavaScript file for the code that will generate your graphics.
 
-All the code you will assemble in this tutorial builds on this initial
-foundation.
+All the code you will assemble in this tutorial builds on this initial foundation.
 
 ## HTML
 
-This is the only HTML required for this tutorial. Copy and paste this code into
-the HTML panel of your code playground.
+This is the only HTML required for this tutorial. Copy and paste this code into the HTML panel of your code playground.
 
-Note the `<canvas>` element in the code below. This is the element that your
-graphics will be rendered on. The `id` attribute with the value
-`creative-code` is how your JavaScript code will find the canvas.
+Note the `<canvas>` element in the code below. This is the element that your graphics will be rendered on. The `id` attribute with the value `creative-code` is how your JavaScript code will find the canvas.
 
 ```html
 <!DOCTYPE html>
@@ -51,25 +43,17 @@ graphics will be rendered on. The `id` attribute with the value
 </html>
 ```
 
-The `<meta>` tag with the `name="viewport"` attribute ensures that the graphics
-will render correctly on a mobile browser. This is useful if you want to view
-your project on a phone or tablet.
+The `<meta>` tag with the `name="viewport"` attribute ensures that the graphics will render correctly on a mobile browser. This is useful if you want to view your project on a phone or tablet.
 
-:::important
-The `<script>` tag that imports your JavaScript file has the attribute
-`type="module"`. This **_must_** be present. The three.js library uses a
-feature of modern JavaScript known as modules. Any JavaScript file that uses
-three.js must be imported with this attribute.
+:::important Module scripts
+The `<script>` tag that imports your JavaScript file has the attribute`type="module"`. This **_must_** be present. The three.js library uses a feature of modern JavaScript known as modules. Any JavaScript file that uses three.js must be imported with this attribute.
 :::
 
 ## CSS
 
-This is the only CSS required for the tutorial. Copy and paste this code into
-the CSS panel of your code playground.
+This is the only CSS required for the tutorial. Copy and paste this code into the CSS panel of your code playground.
 
-Note the block that identifies the `.three` class in the CSS code below. The
-styles in this block will be applied to the `<canvas>` element in the HTML code
-and cause your graphics to fill the browser window.
+Note the block that identifies the `.three` class in the CSS code below. The styles in this block will be applied to the `<canvas>` element in the HTML code and cause your graphics to fill the browser window.
 
 ```css
 body {
@@ -90,14 +74,9 @@ body {
 
 ## JavaScript
 
-To get the JavaScript code started, you will need to import the three.js
-library. The tree.js documentation recommends importing the library from the
-SkyPack content delivery network (CDN). The code snippet below will import the
-library from that source.
+To get the JavaScript code started, you will need to import the three.js library. The tree.js documentation recommends importing the library from the SkyPack content delivery network (CDN). The code snippet below will import the library from that source.
 
-This import specifies the version that was in use when this tutorial was
-written (0.137.5). By historical convention, three.js is imported with the name
-`THREE`, and you will see it capitalized this way in other tutorials.
+This import specifies the version that was in use when this tutorial was written (0.137.5). By historical convention, three.js is imported with the name `THREE`, and you will see it capitalized this way in other tutorials.
 
 Copy and paste this code into the JavaScript panel of your code playground.
 
@@ -105,23 +84,14 @@ Copy and paste this code into the JavaScript panel of your code playground.
 import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
 ```
 
-:::caution
-If you do not explicitly specify a version, the most recently released version
-of three.js will be imported. Importing the latest and greatest might sound like
-a good idea, but updates to three.js sometimes change things in ways that can
-break your project. So whenever you import the library, you should specify the
-version you are using. This will ensure that your project continues to work
-even after new versions of three.js are released.
+:::caution Always specify a version number
+If you do not explicitly specify a version, the most recently released version of three.js will be imported. Importing the latest and greatest might sound like a good idea, but updates to three.js sometimes change things in ways that can break your project. So whenever you import the library, you should specify the version you are using. This will ensure that your project continues to work even after new versions of three.js are released.
 :::
 
 ## Moving Forward
 
-From this point forward, you will not need to edit the HTML or CSS. You may
-make changes to them if you wish, but this tutorial assumes that you have not
-modified the HTML or CSS.
+From this point forward, you will not need to edit the HTML or CSS. You may make changes to them if you wish, but this tutorial assumes that you have not modified the HTML or CSS.
 
-Once you have copied these code blocks into their respective panels in your
-code playground, run the code. The result panel should now be filled with a
-dark purple color.
+Once you have copied these code blocks into their respective panels in your code playground, run the code. The result panel should now be filled with a dark purple color.
 
-![A screenshot of a blank, dark purple screen](./assets/base-code-result.png "The result of this section's code")
+![A screenshot of a blank, dark purple screen](assets/base-code-result.png "The result of this section's code")

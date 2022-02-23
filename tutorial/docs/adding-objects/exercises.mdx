@@ -13,27 +13,20 @@ keywords:
   - tutorial
 ---
 
-If you would like to experiment with the project before moving on to the next
-module, here are some ideas to try.
+If you would like to experiment with the project before moving on to the next module, here are some ideas to try.
 
-* Modify the `buildCellVisual` function so that it creates a shape other than
-  a cube.
-* Modify the `buildCellVisual` function so that it creates a random shape each
-  time it is called. Limit the possible random shapes to `THREE.BoxGeometry`,
-  `THREE.ConeGeometry` and `THREE.SphereGeometry`.
+* Try different values for `GRID_SIZE`. Remember that this value must be an integer. Be aware that as you increase this value, there will be a point where the animation noticeably slows down and may even cause your browser to crash.
+* The `buildCellVisual` function only creates cubes. Change the function so that it creates a shape other than a cube. For example, try creating tetrahedrons instead (using `THREEE.TetrahedronGeometry`).
+* The `update` function used in this module rotates the grid on the y-axis. Add a line to the function so that the grid also rotates on the x-axis. What happens if you also rotate it on the x-axis?
+* What if the shape of each cell was determined randomly? Modify the `buildCellVisual` function so that it creates a random shape each time it is called. Limit the possible random shapes to `THREE.BoxGeometry`, `THREE.ConeGeometry` and `THREE.SphereGeometry`.
 * Consider the logic that determines where to place the camera:
   
   ```javascript
   camera.position.set(0, 0, GRID_SIZE * (MAX_CELL_SIZE + CELL_SPACING));
   ```
 
-  How you might modify the `setUpLights` function so that the position of the
-  lights is determined by the size of your rotating grid? _**Note**: this is an
-  advanced exercise_.
+  How you might modify the `setUpLights` function so that the position of the lights is determined by the size of your rotating grid? What happens if you accidentally place one of your lights inside the grid? _**Note**: this is an advanced exercise_.
 
 ## Moving forward
 
-If you have done any experimenting with the exercises, be sure to restore your
-code to its previous state before moving on to the next module. If you are
-unsure what you have changed, you can get your code back to the tutorial state
-by copying it from this module's [checkpoint](./checkpoint.mdx).
+If you have done any experimenting with the exercises, be sure to restore your code to its previous state before moving on to the next module. If you are unsure what you have changed, you can get your code back to the tutorial state by copying it from this module's [checkpoint](./checkpoint.mdx).
