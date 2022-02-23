@@ -23,29 +23,11 @@ If you spent some time experimenting, you can copy and paste the code here to re
 import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
 
 /**
- * Create a renderer and attach it to the HTML canvas element with the provided 
- * ID.
- *
- * @param {string} elementId
- * @returns {THREE.WebGLRenderer} the newly created renderer
- */
- function setUpRenderer(elementId) {
-  const canvas = document.querySelector(elementId);
-  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.outputEncoding = THREE.sRGBEncoding;
-
-  return renderer;
-}
-
-/**
  * Add lights to the given scene.
  * 
  * @param {THREE.Scene} scene 
  */
- function setUpLights(scene) {
+function setUpLights(scene) {
   const light1 = new THREE.PointLight("#ea00d9"); // magenta
   light1.position.set(8, 3, 4);
   scene.add(light1);
@@ -58,14 +40,31 @@ import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
 /**
  * Create a perspective camera that looks at the center of the scene.
  * 
- * @returns {THREE.Camera} the newly created camera
+ * @returns {THREE.Camera}
  */
- function setUpCamera() {
+function setUpCamera() {
   const aspectRatio = window.innerWidth / window.innerHeight;
   const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
   camera.lookAt(0, 0, 0);
 
   return camera;
+}
+
+/**
+ * Create a renderer and attach it to the HTML canvas element with the provided 
+ * ID.
+ *
+ * @param {string} elementId
+ * @returns {THREE.WebGLRenderer} the newly created renderer
+ */
+function setUpRenderer(elementId) {
+  const canvas = document.querySelector(elementId);
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  return renderer;
 }
 
 /**
@@ -139,9 +138,9 @@ renderer.setAnimationLoop(animate);
  * @param {THREE.Vector3} size the cell's size
  * @returns {THREE.Mesh} the 3D mesh to add to the scene
  */
- function buildCellVisual(position, size) {
+function buildCellMesh(position, size) {
   const geometry = new THREE.BoxGeometry();
-  const material = new THREE.MeshStandardMaterial({ color: "#aaaaaa" });
+  const material = new THREE.MeshStandardMaterial({ color: "#aaa" });
   const mesh = new THREE.Mesh(geometry, material);
 
   mesh.position.copy(position);
@@ -151,34 +150,31 @@ renderer.setAnimationLoop(animate);
 }
 
 /**
- * Create a square grid of cell visuals.
+ * Create a square grid of cell meshes.
  *
  * @param {number} gridWidth the width of the grid in cells
- * @param {number} maxCellSize the maximum size of a cell visual in three.js
- *        units
- * @param {number} spacing how much space, in three.js units, to place between
- *        each cell visual
- * @returns {Array<Array<THREE.mesh>>} a two dimensional array of the cell
- *         visuals
+ * @param {number} maxCellSize the maximum size of a cell mesh
+ * @param {number} spacing how much space to place between each cell mesh
+ * @returns {Array<Array<THREE.mesh>>} a nested array of the cell meshes
  */
-function buildGridVisuals(gridWidth, maxCellSize, spacing) {
-  const fullSize = maxCellSize + spacing;
-  const halfSize = fullSize / 2;
-  const viewSize = gridWidth * fullSize;
-  const offset = (gridWidth * fullSize) / 2;
+function buildGridMeshes(gridSize, cellSize, spacing) {
+  const cellWithSpace = cellSize + spacing;
+  const gridCenter = (gridSize * cellWithSpace) / 2;
+  const offset = (cellWithSpace / 2) - gridCenter;
 
-  const visualSize = new THREE.Vector3(maxCellSize, maxCellSize, maxCellSize);
-  let cells = [];
+  const meshSize = new THREE.Vector3(cellSize, cellSize, cellSize);
 
-  for (let x = 0; x < gridWidth; x++) {
-    const visualX = x * fullSize + halfSize - offset;
-    cells[x] = [];
+  const cells = [];
 
-    for (let y = 0; y < gridWidth; y++) {
-      const visualY = y * fullSize + halfSize - offset;
-      const visualPosition = new THREE.Vector3(visualX, visualY, 0);
+  for (let row = 0; row < gridSize; row++) {
+    const y = (row * cellWithSpace) + offset;
+    cells[row] = [];
 
-      cells[x][y] = buildCellVisual(visualPosition, visualSize);
+    for (let column = 0; column < gridSize; column++) {
+      const x = (column * cellWithSpace) + offset;
+      const position = new THREE.Vector3(x, y, 0);
+
+      cells[row][column] = buildCellMesh(position, meshSize);
     }
   }
 
@@ -186,12 +182,12 @@ function buildGridVisuals(gridWidth, maxCellSize, spacing) {
 }
 
 /**
- * Create a group to hold the cell visuals so they can be moved together.
+ * Create a group to hold the cell meshes so they can be moved together.
  *
  * @param {Array<Array<object>>} cells the visuals
  * @returns the group containing the cells
  */
- function buildGridCellGroup(cells) {
+ function groupCellMeshes(cells) {
   const cellGroup = new THREE.Group();
 
   for (const cell of cells.flat()) {
@@ -215,8 +211,9 @@ const CELL_SPACING = MAX_CELL_SIZE / 10;
 
 // Setup our cell visuals and group them together so we can move them all at
 // the same time
-const cellVisuals = buildGridVisuals(GRID_SIZE, MAX_CELL_SIZE, CELL_SPACING);
-const cellGroup = buildGridCellGroup(cellVisuals);
+const cellMeshes = buildGridMeshes(GRID_SIZE, MAX_CELL_SIZE, CELL_SPACING);
+const cellGroup = groupCellMeshes(cellMeshes);
+
 scene.add(cellGroup);
 
 // Move the camera far enough from our cells that we can see all of them.
@@ -225,6 +222,9 @@ camera.position.set(0, 0, GRID_SIZE * (MAX_CELL_SIZE + CELL_SPACING));
 // The number of radians the grid rotates each frame
 const ROTATION_SPEED = 0.0075;
 
+/**
+ * Contains the code to handle updating a specific project's animation.
+ */
 function update() {
   cellGroup.rotation.y += ROTATION_SPEED;
 }

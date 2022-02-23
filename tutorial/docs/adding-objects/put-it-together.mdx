@@ -25,7 +25,7 @@ It then rotates the entire group 45 degrees before returning the group object. K
 This is a short function, and you may wonder why it was not simply combined with the `buildGridMeshes` function in the previous section. Because the end goal is to add behavior to the individual cells of the grid, you need to maintain access to the original nested array of cells. It will be harder to access these cells if only the group object is available.
 
 ```javascript
- function groupCellMeshes(cells) {
+function groupCellMeshes(cells) {
   const cellGroup = new THREE.Group();
 
   for (const cell of cells.flat()) {
@@ -77,7 +77,7 @@ scene.add(cellGroup);
 
 ## Positioning the camera
 
-If you ran your code right now, you wouldn't see anything. The camera you created in the [previous module](./../scene-setup/put-it-together.mdx) is located at its default location: (0, 0, 0), and it was set to "look at" the position (0, 0, 0) as well. This means that at the moment all the cells you just created are out of view.
+If you ran your code right now, you wouldn't see anything. The camera you created in the [previous module][M1CAMERA] is located at its default location: (0, 0, 0), and it was set to "look at" the position (0, 0, 0) as well. This means that at the moment all the cells you just created are out of view.
 
 You will need to move it far enough away from your grid so that all the cells are visible. You only need to change the camera's z-axis position to do this, and leaving the x-axis and y-axis positions as is will keep the grid centered on the screen.
 
@@ -90,3 +90,5 @@ camera.position.set(0, 0, GRID_SIZE * (MAX_CELL_SIZE + CELL_SPACING));
 Run your code now, and your scene will look like the image below.
 
 ![An image of an eight-by-eight grid of squares tilted 45 degrees](assets/tilted-cube-grid.png "What you should see when you run your code")
+
+[M1CAMERA]: ../scene-setup/lights-camera-render.mdx#adding-the-camera
