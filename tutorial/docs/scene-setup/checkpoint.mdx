@@ -23,29 +23,11 @@ If you spent some time experimenting, you can copy and paste the code here to re
 import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
 
 /**
- * Create a renderer and attach it to the HTML canvas element with the provided 
- * ID.
- *
- * @param {string} elementId
- * @returns {THREE.WebGLRenderer} the newly created renderer
- */
- function setUpRenderer(elementId) {
-  const canvas = document.querySelector(elementId);
-  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.outputEncoding = THREE.sRGBEncoding;
-
-  return renderer;
-}
-
-/**
  * Add lights to the given scene.
  * 
  * @param {THREE.Scene} scene 
  */
- function setUpLights(scene) {
+function setUpLights(scene) {
   const light1 = new THREE.PointLight("#ea00d9"); // magenta
   light1.position.set(8, 3, 4);
   scene.add(light1);
@@ -58,14 +40,31 @@ import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
 /**
  * Create a perspective camera that looks at the center of the scene.
  * 
- * @returns {THREE.Camera} the newly created camera
+ * @returns {THREE.Camera}
  */
- function setUpCamera() {
+function setUpCamera() {
   const aspectRatio = window.innerWidth / window.innerHeight;
   const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
   camera.lookAt(0, 0, 0);
 
   return camera;
+}
+
+/**
+ * Create a renderer and attach it to the HTML canvas element with the provided 
+ * ID.
+ *
+ * @param {string} elementId
+ * @returns {THREE.WebGLRenderer} the newly created renderer
+ */
+function setUpRenderer(elementId) {
+  const canvas = document.querySelector(elementId);
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  return renderer;
 }
 
 /**

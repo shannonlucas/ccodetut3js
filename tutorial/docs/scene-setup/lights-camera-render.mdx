@@ -27,7 +27,7 @@ The lights are positioned using the `.position.set` method on each light. The `.
 Note that this function does not return anything since it adds the lights directly to the scene object you will pass to it as a parameter.
 
 ```javascript
- function setUpLights(scene) {
+function setUpLights(scene) {
   const light1 = new THREE.PointLight("#ea00d9"); // magenta
   light1.position.set(8, 3, 4);
   scene.add(light1);
@@ -38,7 +38,7 @@ Note that this function does not return anything since it adds the lights direct
 }
 ```
 
-:::tip Picking a background color
+:::tip Lights and background color
 When you copied the CSS for this tutorial, you may have noticed that the background color was not black.
 
 If your lights are in the wrong place, many (or all) of the objects in your scene might be in a shadow and will be rendered as black. If your background is also black, you won't be able to see them, and it might take you some time to figure out where the problem actually is. With a background that has a slight color, you will be able to see these objects as silhouettes against that color.
@@ -61,7 +61,7 @@ The last two parameters specify the closest distance to and farthest distance fr
 The function then sets the camera to look at the center, or origin, of the scene. Finally, it returns the newly created camera object.
 
 ```javascript
- function setUpCamera() {
+function setUpCamera() {
   const aspectRatio = window.innerWidth / window.innerHeight;
   const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
   camera.lookAt(0, 0, 0);
@@ -83,7 +83,7 @@ The function then sets its size to fill the entire browser window. Setting the p
 Finally, the function returns the renderer object it created.
 
 ```javascript
- function setUpRenderer(elementId) {
+function setUpRenderer(elementId) {
   const canvas = document.querySelector(elementId);
   const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
 
