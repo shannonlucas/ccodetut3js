@@ -1,0 +1,43 @@
+---
+id: postscript
+title: Postscript
+sidebar_position: 9
+sidebar_label: Postscript
+keywords:
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
+---
+
+You now have a foundation to start building some creative code projects in three.js, and you've had a chance to see a simple demo of how to use that foundation. The amount of code you've produced may seem small, but you have covered a great deal of information. You learned some core concepts of 3D scenes and animation and then put those concepts to use with three.js.
+
+In the next module, you will begin building on this foundation by adding a number of objects to the scene and animating them as a group.
+
+## Optional exercises
+
+If you would like to experiment with the demo before moving on to the next module, here are some things to try. Once you're done experimenting, be sure to restore your code to its previous state before moving on to the next module. If you are unsure what you have changed, you can get your code back to the tutorial state by copying it from this module's [checkpoint](./checkpoint.mdx).
+
+* Pick one of the lights and try changing some of its properties. For example, change its color or position. Experiment with one light at a time so that you can see how changing one affects the scene.
+* In the demo's `update` function, change the rotation speeds to be different values. Observe how this affects the cube's behavior.
+* Change the value of `MILLISECONDS_PER_FRAME` to a different value such as `1000 / 30` or `1000 / 120`. What changes do you notice?
+* In the demo code, replace `THREE.BoxGeometry()` with `THREE.DodecahedronGeometry()`. What differences, if any, do you notice in how the light and shadows interact with this shape?
+
+## Additional resources
+
+* three.js classes introduced in this section
+  * [PerspectiveCamera](https://threejs.org/docs/index.html#api/en/cameras/PerspectiveCamera)
+  * [PointLight](https://threejs.org/docs/index.html#api/en/lights/PointLight)
+  * [Scene](https://threejs.org/docs/index.html#api/en/scenes/Scene)
+  * [WebGLRenderer](https://threejs.org/docs/index.html#api/en/renderers/WebGLRenderer)
+* JavaScript event listener tutorials
+  * [Understanding Events in JavaScript](https://www.digitalocean.com/community/tutorials/understanding-events-in-javascript) -
+    a tutorial explaining how event handlers and event listeners work in
+    JavaScript
+  * [Handling Events](https://eloquentjavascript.net/15_event.html) - a lengthy,
+    but thorough, chapter about events from the book,
+    [Eloquent Javascript](https://eloquentjavascript.net/)
+* [Field of view](https://en.wikipedia.org/wiki/Field_of_view) - A Wikipedia
+  entry providing a detailed explanation of the field of view.
