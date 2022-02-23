@@ -40,7 +40,7 @@ function groupCellMeshes(cells) {
 ```
 
 :::note Array flattening
-The function above iterates over a flattened copy of the `cells` array. The group object doesn't have any knowledge of which row and column each cell is located at. So in this case, you can use the `.flat()` method to simplify your code. See the "[Additional resources](./../wrapping-up/additional-resources.mdx)" section for more information about array flattening.
+The function above iterates over a flattened copy of the `cells` array. The group object doesn't have any knowledge of which row and column each cell is located at. So in this case, you can use the `.flat()` method to simplify your code. See this module's [postscript][POSTSCRIPT] for more information about array flattening.
 :::
 
 ## Displaying the cells
@@ -66,7 +66,7 @@ const CELL_SPACING = MAX_CELL_SIZE / 10;
 ```
 
 Now create the cell meshes, group them together, and then add the group to the
-scene. You created the `scene` variable in the [previous module](./../scene-setup/put-it-together.mdx).
+scene. You created the `scene` variable in the [previous module][M1TOGETHER].
 
 ```javascript
 const cellMeshes = buildGridMeshes(GRID_SIZE, MAX_CELL_SIZE, CELL_SPACING);
@@ -91,4 +91,6 @@ Run your code now, and your scene will look like the image below.
 
 ![An image of an eight-by-eight grid of squares tilted 45 degrees](assets/tilted-cube-grid.png "What you should see when you run your code")
 
+[POSTSCRIPT]: ./postscript.mdx#additional-resources
+[M1TOGETHER]: ./../scene-setup/put-it-together.mdx
 [M1CAMERA]: ../scene-setup/lights-camera-render.mdx#adding-the-camera
