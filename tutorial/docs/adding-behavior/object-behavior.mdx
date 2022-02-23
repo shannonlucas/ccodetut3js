@@ -1,0 +1,48 @@
+---
+id: cell-behavior
+title: Building cell behavior
+sidebar_position: 2
+sidebar_label: Cell behavior
+keywords:
+  - animation
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
+---
+
+:::warning TO BE DONE
+Content in this section is under development.
+
+This section will discuss creating a simple data structure to track the state of a single cell within the 3D scene.
+
+It will walk through an analysis of the behavior that is happening in the tutorial scene and how that can be modeled.
+:::
+
+```javascript
+/**
+ * Create a new cell with a random size and growth direction.
+ *
+ * @param {number} maxSize the maximum size the cell can grow to; this must be a
+ *        positive number
+ * @param {number} minSize the minimum size the cell can shrink to; this must be
+ *        less than maxSize and greater than or equal to zero
+ * @param {number} growthRate how fast the cell can grow each time the next cell
+ *        state is generated
+ * @returns {object} an object containing the cell information
+ */
+function spawnCell(maxSize, minSize, growthRate) {
+  const size = Math.random() * (maxSize - minSize) + minSize;
+  const direction = Math.random() < 0.5 ? -1 : 1;
+  const growth = growthRate * direction;
+
+  return {
+    size,
+    growth,
+    maxSize,
+    minSize,
+  };
+}
+```

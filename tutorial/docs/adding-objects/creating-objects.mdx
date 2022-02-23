@@ -1,0 +1,56 @@
+---
+id: creating-objects
+title: Creating objects for your scene
+sidebar_position: 1
+sidebar_label: Creating the objects
+keywords:
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
+---
+
+The objects you will be working with in this tutorial are cubes. However, they don't have to be cubes, and when a generic term is more appropriate, the term "cell" will be used. Using this term will also reduce confusion about the many meanings of the term "object" in the context of graphics programming.
+
+## Vectors
+
+You are about to start using vectors, and you will encounter them frequently when working with computer graphics. Vectors, as you will use them in this tutorial, are a group of numbers. You will use a three number vector to store an object's x, y, and z coordinates as a single unit. You will also use a vector to store the size of an object on its x, y, and z axes.
+
+If you'd like to know more about vectors, you can find links to learning resources in the [postscript][POSTSCRIPT] of this module.
+
+## Creating individual cells
+
+The function below builds the mesh for a single cell in your grid. In the introduction to the tutorial, you learned that meshes are mathematical models of the objects in your scene. They combine both the geometry of an object with the "material" or appearance of the object. The mesh also contains information about where the object is located in your scene and how it is oriented.
+
+In this instance you are creating the geometry for a box. The object returned by `THREE.BoxGeometry` contains the location of the 8 corners and the edges that connect them to form a cube.
+
+Next, you are creating a "material" that the cube is made of. The material determines what the object will appear to be made of. Different materials can cause an object to look like glass, wood, or even a cartoon. In this case, you are creating a simple material with a gray color. The color that `THREE.MeshStandardMaterial` expects is a hexadecimal color code like you would use in HTML or CSS.
+
+You then combine the geometry and the material into a mesh.
+
+The function takes two parameters that are `THREE.Vector3`s. Each has `x`, `y`, and `z` properties. The parameter `position` is used to set the location of the mesh, and the parameter `size` is used to set the size of the mesh.
+
+Finally, the function returns the `THREE.Mesh` that you created.
+
+```javascript
+function buildCellMesh(position, size) {
+  const geometry = new THREE.BoxGeometry();
+  const material = new THREE.MeshStandardMaterial({ color: "#aaa" });
+  const mesh = new THREE.Mesh(geometry, material);
+
+  mesh.position.copy(position);
+  mesh.scale.copy(size);
+
+  return mesh;
+}
+```
+
+:::important Vector Properties in three.js
+As a general rule in three.js, if you are working with an object such as a mesh, vector properties must be manipulated with methods such as `copy` and `set` or by setting their individual `x`, `y`, and `z` properties.
+
+The reasons for this are outside the scope of this tutorial. But be aware of it as you experiment. Sometimes unexpected behavior or errors can be caused by attempting to assign these properties directly.
+:::
+
+[POSTSCRIPT]: ./postscript.mdx

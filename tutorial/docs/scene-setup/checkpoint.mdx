@@ -1,0 +1,181 @@
+---
+id: checkpoint
+title: Checkpoint
+sidebar_position: 10
+sidebar_label: Checkpoint
+keywords:
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
+---
+
+Below you will find all the code you've assembled up to this point in the tutorial. Comments have been added to the JavaScript code to reinforce what each section of code does.
+
+If you spent some time experimenting, you can copy and paste the code here to return things to where they should be for the next tutorial module.
+
+## JavaScript
+
+```javascript
+/* For this tutorial, three.js version 0.137.5 is used. */
+import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
+
+/**
+ * Add lights to the given scene.
+ * 
+ * @param {THREE.Scene} scene 
+ */
+function setUpLights(scene) {
+  const light1 = new THREE.PointLight("#ea00d9"); // magenta
+  light1.position.set(8, 3, 4);
+  scene.add(light1);
+
+  const light2 = new THREE.PointLight("#0abdc6"); // cyan
+  light2.position.set(-6, 0, 2);
+  scene.add(light2);
+}
+
+/**
+ * Create a perspective camera that looks at the center of the scene.
+ * 
+ * @returns {THREE.Camera}
+ */
+function setUpCamera() {
+  const aspectRatio = window.innerWidth / window.innerHeight;
+  const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+  camera.lookAt(0, 0, 0);
+
+  return camera;
+}
+
+/**
+ * Create a renderer and attach it to the HTML canvas element with the provided 
+ * ID.
+ *
+ * @param {string} elementId
+ * @returns {THREE.WebGLRenderer} the newly created renderer
+ */
+function setUpRenderer(elementId) {
+  const canvas = document.querySelector(elementId);
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  return renderer;
+}
+
+/**
+ * Setup the graphics to draw the art to.
+ * 
+ * @param {string} elementId the ID of the HTML <canvas> element to render the
+ *        graphics to.
+ * @returns {object} an object containing the following properties:
+ *                     * renderer - the newly created renderer
+ *                     * camera - the newly created camera
+ *                     * scene - the newly created scene
+ */
+function setUpGraphics(elementId) {
+  const renderer = setUpRenderer(elementId);
+  const camera = setUpCamera();
+  const scene = new THREE.Scene();
+  setUpLights(scene);
+
+  // If the browser window gets resized, the camera and renderer have to be
+  // updated. This block of code handles that.
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  return { renderer, camera, scene };
+}
+
+const { renderer, camera, scene } = setUpGraphics('#creative-code');
+
+// How many milliseconds to wait between drawing each frame. Divide one second
+// (1000 milliseconds) by the target frame rate of 60 frames per second.
+const MILLISECONDS_PER_FRAME = 1000 / 60;
+
+// To control the speed of the animation, the time between frames is tracked.
+// This is initially set to zero since no frame has been rendered yet.
+let lastFrameTime = 0;
+
+/**
+ * Animates the scene.
+ * 
+ * This function is called every time computer refreshes its display. The
+ * refresh rate will vary from one computer to another and may even vary on the
+ * same computer.
+ * 
+ * To make the animation consistent from one computer to another, the function
+ * only updates the animation at a set interval.
+ * 
+ * @param {number} animationTime - the amount of time, in milliseconds, since
+ *        the animation started.
+ */
+function animate(animationTime) {
+  const elapsedTime = animationTime - lastFrameTime;
+
+  if (elapsedTime >= MILLISECONDS_PER_FRAME) {
+    update();
+    renderer.render(scene, camera);
+    lastFrameTime = animationTime;
+  }
+}
+
+// Start the animation loop
+renderer.setAnimationLoop(animate);
+
+/**
+ * Contains the code to handle updating a specific project's animation.
+ */
+function update() {
+  // Your project's animation code will go here.
+}
+```
+
+## HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" 
+          content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Creative coding with three.js</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
+  </head>
+
+  <body>
+    <canvas id="creative-code" class="three"></canvas>
+  </body>
+
+</html>
+```
+
+## CSS
+
+```css
+body {
+  background-color: #202;
+  color: #fff;
+  overflow: hidden;
+}
+
+.three {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+```
