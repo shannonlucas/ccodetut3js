@@ -38,6 +38,10 @@ This isn't as daunting as it sounds. Time in JavaScript is measured in milliseco
 const MILLISECONDS_PER_FRAME = 1000 / 60;
 ```
 
+:::note SCREAMING_SNAKE_CASE
+The name of the variable above is written in a format known as "screaming snake case." All the letters in the variable name are in uppercase, and words are separated by an underscore character. This convention is used by three.js to indicate values that won't change and are available to all the functions in a program. This tutorial uses this convention as well. When you see a variable named this way, it is being used to provide an overall configuration for the project as a whole.
+:::
+
 Next, you will need a variable to keep track of how much time in milliseconds has passed since the last frame was rendered. Set this variable to zero since no frames have been rendered yet.
 
 ```javascript

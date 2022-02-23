@@ -1,9 +1,10 @@
 ---
 id: introduction
+title: Creative coding with three.js
+slug: /
 sidebar_position: 1
 sidebar_label: Introduction
-slug: /
-title: Creative coding with three.js
+toc_max_heading_level: 2
 ---
 
 The idea of using programming as a creative medium isn't new. In fact, people began using computers as a creative outlet almost as soon as computers became widely available.
@@ -12,66 +13,75 @@ Creative coding differs from traditional programming in that the intent is expre
 
 Tinkering and experimentation are embraced by creative coding. And there are many "happy accidents," in the words of painter Bob Ross, that lead to interesting and engaging works.
 
-## What will you learn?
+## What you will build
 
 This tutorial will guide you through assembling a set of building blocks that you can use to experiment with 3D graphics in your web browser. You will then assemble a complete project using these building blocks. The animation below is what you will be building.
 
 ![An animation of a grid of cubes rotating together with each cube randomly changing its size](./assets/finished-project.gif "What you will build in this tutorial")
 
-You will be using JavaScript and [three.js](https://threejs.org/) for this project. Three.js is a general purpose 3D graphics library that works in modern web browsers such as Chrome, Edge, Firefox, and Safari. Because the goal of this tutorial is to leave you with tools you can reuse, you will find that it is longer than most introductory three.js tutorials.
+You will be using JavaScript and [three.js][3JS] for this project. Three.js is a general purpose 3D graphics library that works well in modern web browsers such as Chrome, Edge, Firefox, and Safari.
 
-## Who is this tutorial for?
+## Why this tutorial exists
 
-This tutorial is for anyone who wants to use programming as a way to create visual expressions and who has some experience with JavaScript. This tutorial will not teach you how to program, and if you are completely new to programming, you should complete an introductory tutorial first. You will find links to introductory JavaScript tutorials in the ["Additional resources"](./wrapping-up/additional-resources.mdx) section.
+Many tutorials exist that provide a quick how-to demonstration for a particular technology. There are also many tutorials about how to build a copy of an existing work. Both types are useful, but neither provides a structured platform for continued learning and experimentation.
 
-If you are unsure, you should be familiar with these JavaScript concepts: variables, types, arrays, objects, loops, `if` statements, and functions.
+This tutorial aims to fill that gap. Because the goal of this tutorial is to leave you with tools you can reuse, you will find that it is longer than most introductory tutorials. By the end of this tutorial you will have a platform and starting example to continue working with. With these at hand, you will be able to get started more quickly on your own creative coding projects.
 
-If 
+## Who this tutorial is for
 
-## What this tutorial is not
+This tutorial is for anyone who wants to use programming as a way to create visual expressions and who has some experience with JavaScript. This tutorial will not teach you how to program, and if you are completely new to programming, you should complete an introductory tutorial first. If you are unsure, you should be familiar with concepts such as variables, types, arrays, objects, loops, `if` statements, and functions. You will find links to introductory JavaScript tutorials in the ["Additional resources"](#learning-javascript) section below.
 
-* this should not be your first programming project
-* the goal is not to teach you javascript
-* will not teach HTML or CSS
-* not a goal to make a game
-* not a goal to find you a programming job
-* following three.js code conventions with SCREAMING_SNAKE_CASE
+If you are an experienced JavaScript developer, you may still find this tutorial to be a helpful introduction to three.js. Keep in mind, however, that the code is structured towards helping those with less programming experience experiment with 3D graphics.
 
 ## How this tutorial is structured
 
-* modules
-* checkpoints
+This tutorial is split into three modules that build on each other. The first module, "[Setting up a scene][MODSCENE]," guides you through assembling the foundation that the remainder of the tutorial builds on. In the second module, "[Adding objects][MODOBJ]," you will add objects to your scene along with a basic animation. Finally, in the third module, "[Adding behavior][MODBEHAVE]," you will add some basic behavior to the objects in your scene.
 
-As you progress through this section, copy and paste each block of JavaScript code at the end of the JavaScript panel of your code playground.
-
-## Purpose
-
-## End Goal
-
-## Background
-
-## Prerequisites
-
-* Many great ideas come form experimentation and tinkering
-* Mostly skipping performance optimization in preference to clarity
-* Deliberately left room for improvement
-
-* Reasons for choosing three.js vs others
-* [JSFiddle](https://jsfiddle.net)
-* [JSFiddle Docs](https://docs.jsfiddle.net)
+At the end of each module, you will find a postscript and a checkpoint. The postscript offers some optional exercises to try with the code and additional resources that are relevant to the module. The checkpoint contains all the code you have assembled in the module, and they exist to provide you with a safety net for experimentation. So try things, experiment, and break things. You can use the checkpoints to quickly get back to a working state.
 
 ## How to enter the code
 
-## SI Units
+You will need a desktop or laptop computer to complete this project. The tutorial is written with an online code playground in mind, so as long as you have a web browser, you don't have to install any software. The project was tested with the [JSFiddle](https://jsfiddle.net) code playground, but it should work in other playgrounds. See the "[Additional resources](#online-code-playgrounds)" section below for some other online code playgrounds.
 
-* distances are in meters (m)
-* rotation angles in radians (rad)
-* lights intensity in candela (cd)
-* degrees used in some places (&deg;)
+Whichever code playground you choose, be sure to familiarize yourself with it before you start this tutorial.
 
-## Copyright
+As you progress through each section, you will be shown additional blocks of JavaScript code. Copy and paste each of these blocks at the end of the JavaScript panel of your code playground.
+
+If you are an experienced JavaScript developer, you likely already have a preferred development workflow. This tutorial should fit into that workflow as well.
+
+## Additional Resources
+
+Throughout the tutorial, you will find links to additional resources. These are provided in the hope that they may be useful. Reasonable effort has been made to ensure their soundness, but their presence should not be taken as an endorsement.
+
+### Online code playgrounds
+
+There are many online code playgrounds. Most offer some level of free usage, but many require you to create an account before using them. Be sure to review the privacy policy of any online service you use.
+
+* [CodePen](https://codepen.io/)
+* [CodeSandbox](https://codesandbox.io/)
+* [Glitch](https://glitch.com/)
+* [JSFiddle](https://jsfiddle.net)
+* [PLAYCODE](https://playcode.io/)
+
+### Learning JavaScript
+
+If you are completely new to JavaScript, or programming in general, you may find one of the resources below useful.
+
+* [Intro to JS: Drawing & Animation][KAHNJS] - this free is a good introductory course to JavaScript if you are completely new to programming
+* [JavaScript tutorial at freeCodeCamp][FREECODEJS] - this is another JavaScript introduction for people new to programming
+* [The Modern JavaScript Tutorial][MODJS] - this tutorial will be useful if you have experience with another programming language and want to explore JavaScript by topic
+
+## Free culture copyright
 
 The contents of this tutorial are licensed under a Creative Commons [Attribution-ShareAlike][CCBYSA4] license. The source code used for the tutorial demos is licensed under the [MIT License][MIT].
 
+[3JS]: https://threejs.org/
+
+[MODSCENE]: ./scene-setup/index.mdx
+[MODOBJ]: ./adding-objects/index.mdx
+[MODBEHAVE]: ./adding-behavior/index.mdx
 [CCBYSA4]: https://creativecommons.org/licenses/by-sa/4.0/
 [MIT]: https://opensource.org/licenses/MIT
+[KAHNJS]: https://www.khanacademy.org/computing/computer-programming/programming
+[FREECODEJS]: https://www.freecodecamp.org/news/full-javascript-course-for-beginners/
+[MODJS]: https://javascript.info/
