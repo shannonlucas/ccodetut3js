@@ -16,6 +16,349 @@ If you spent some time experimenting, you can copy and paste the code here to re
 ## JavaScript
 
 ```javascript
+/* For this tutorial, three.js version 0.137.5 is used. */
+import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
+
+/**
+ * Add lights to the given scene.
+ * 
+ * @param {THREE.Scene} scene 
+ */
+function setUpLights(scene) {
+  const light1 = new THREE.PointLight("#ea00d9"); // magenta
+  light1.position.set(8, 3, 4);
+  scene.add(light1);
+
+  const light2 = new THREE.PointLight("#0abdc6"); // cyan
+  light2.position.set(-6, 0, 2);
+  scene.add(light2);
+}
+
+/**
+ * Create a perspective camera that looks at the center of the scene.
+ * 
+ * @returns {THREE.Camera}
+ */
+function setUpCamera() {
+  const aspectRatio = window.innerWidth / window.innerHeight;
+  const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+  camera.lookAt(0, 0, 0);
+
+  return camera;
+}
+
+/**
+ * Create a renderer and attach it to the HTML canvas element with the provided 
+ * ID.
+ *
+ * @param {string} elementId
+ * @returns {THREE.WebGLRenderer} the newly created renderer
+ */
+function setUpRenderer(elementId) {
+  const canvas = document.querySelector(elementId);
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  return renderer;
+}
+
+/**
+ * Setup the graphics to draw the art to.
+ * 
+ * @param {string} elementId the ID of the HTML <canvas> element to render the
+ *        graphics to.
+ * @returns {object} an object containing the following properties:
+ *                     * renderer - the newly created renderer
+ *                     * camera - the newly created camera
+ *                     * scene - the newly created scene
+ */
+function setUpGraphics(elementId) {
+  const renderer = setUpRenderer(elementId);
+  const camera = setUpCamera();
+  const scene = new THREE.Scene();
+  setUpLights(scene);
+
+  // If the browser window gets resized, the camera and renderer have to be
+  // updated. This block of code handles that.
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  return { renderer, camera, scene };
+}
+
+const { renderer, camera, scene } = setUpGraphics('#creative-code');
+
+// How many milliseconds to wait between drawing each frame. Divide one second
+// (1000 milliseconds) by the target frame rate of 60 frames per second.
+const MILLISECONDS_PER_FRAME = 1000 / 60;
+
+// To control the speed of the animation, the time between frames is tracked.
+// This is initially set to zero since no frame has been rendered yet.
+let lastFrameTime = 0;
+
+/**
+ * Animates the scene.
+ * 
+ * This function is called every time computer refreshes its display. The
+ * refresh rate will vary from one computer to another and may even vary on the
+ * same computer.
+ * 
+ * To make the animation consistent from one computer to another, the function
+ * only updates the animation at a set interval.
+ * 
+ * @param {number} animationTime - the amount of time, in milliseconds, since
+ *        the animation started.
+ */
+function animate(animationTime) {
+  const elapsedTime = animationTime - lastFrameTime;
+
+  if (elapsedTime >= MILLISECONDS_PER_FRAME) {
+    update();
+    renderer.render(scene, camera);
+    lastFrameTime = animationTime;
+  }
+}
+
+// Start the animation loop
+renderer.setAnimationLoop(animate);
+
+/**
+ * Creates the 3D model of an individual cell with a given position and size.
+ *
+ * @param {THREE.Vector3} position the cell's position in 3D space
+ * @param {THREE.Vector3} size the cell's size
+ * @returns {THREE.Mesh} the 3D mesh to add to the scene
+ */
+function buildCellMesh(position, size) {
+  const geometry = new THREE.BoxGeometry();
+  const material = new THREE.MeshStandardMaterial({ color: "#aaa" });
+  const mesh = new THREE.Mesh(geometry, material);
+
+  mesh.position.copy(position);
+  mesh.scale.copy(size);
+
+  return mesh;
+}
+
+/**
+ * Create a square grid of cell meshes.
+ *
+ * @param {number} gridWidth the width of the grid in cells
+ * @param {number} maxCellSize the maximum size of a cell mesh
+ * @param {number} spacing how much space to place between each cell mesh
+ * @returns {Array<Array<THREE.mesh>>} a nested array of the cell meshes
+ */
+function buildGridMeshes(gridSize, cellSize, spacing) {
+  const cellWithSpace = cellSize + spacing;
+  const gridCenter = (gridSize * cellWithSpace) / 2;
+  const offset = (cellWithSpace / 2) - gridCenter;
+
+  const meshSize = new THREE.Vector3(cellSize, cellSize, cellSize);
+
+  const cells = [];
+
+  for (let row = 0; row < gridSize; row++) {
+    const y = (row * cellWithSpace) + offset;
+    cells[row] = [];
+
+    for (let column = 0; column < gridSize; column++) {
+      const x = (column * cellWithSpace) + offset;
+      const position = new THREE.Vector3(x, y, 0);
+
+      cells[row][column] = buildCellMesh(position, meshSize);
+    }
+  }
+
+  return cells;
+}
+
+/**
+ * Create a group to hold the cell meshes so they can be moved together.
+ *
+ * @param {Array<Array<object>>} cells the visuals
+ * @returns the group containing the cells
+ */
+ function groupCellMeshes(cells) {
+  const cellGroup = new THREE.Group();
+
+  for (const cell of cells.flat()) {
+    cellGroup.add(cell);
+  }
+
+  // Tilt the group 45 degrees (in radians)
+  cellGroup.rotation.z = Math.PI / 4;
+
+  return cellGroup;
+}
+
+// This is how many rows and columns we'll have in our grid.
+const GRID_SIZE = 8;
+
+// This is the largest cell size we'll allow.
+const MAX_CELL_SIZE = 1.0;
+
+// How much space to put between the 3D cubes
+const CELL_SPACING = MAX_CELL_SIZE / 10;
+
+// Setup our cell visuals and group them together so we can move them all at
+// the same time
+const cellMeshes = buildGridMeshes(GRID_SIZE, MAX_CELL_SIZE, CELL_SPACING);
+const cellGroup = groupCellMeshes(cellMeshes);
+
+scene.add(cellGroup);
+
+// Move the camera far enough from our cells that we can see all of them.
+camera.position.set(0, 0, GRID_SIZE * (MAX_CELL_SIZE + CELL_SPACING));
+
+// The number of radians the grid rotates each frame
+const ROTATION_SPEED = 0.0075;
+
+/**
+ * Create a new cell with a random size and growth direction.
+ *
+ * @param {number} maxSize the maximum size the cell can grow to; this must be a
+ *        positive number
+ * @param {number} minSize the minimum size the cell can shrink to; this must be
+ *        less than maxSize and greater than or equal to zero
+ * @param {number} growthRate how fast the cell can grow each time the next cell
+ *        state is generated
+ * @returns {object} an object containing the cell information
+ */
+function spawnCell(maxSize, minSize, growthRate) {
+  const size = Math.random() * (maxSize - minSize) + minSize;
+  const direction = Math.random() < 0.5 ? -1 : 1;
+  const growth = growthRate * direction;
+
+  return {
+    size,
+    growth,
+    maxSize,
+    minSize,
+  };
+}
+
+/**
+ * Create an initial square grid of cells.
+ *
+ * @param {*} gridWidth the width of the grid in cells
+ * @param {*} maxSize the maximum size the cell can grow to; this must be a
+ *        positive number
+ * @param {*} minSize the minimum size the cell can shrink to; this must be
+ *        less than maxSize and greater than or equal to zero
+ * @param {number} growthRate how fast the cell can grow each time the next cell
+ *        state is generated
+ * @returns {Array<Array<object>>} a two dimensional array of the cells
+ */
+function buildBehaviorGrid(gridWidth, maxSize, minSize, growthRate) {
+  let cells = [];
+
+  for (let x = 0; x < gridWidth; x++) {
+    cells[x] = [];
+
+    for (let y = 0; y < gridWidth; y++) {
+      cells[x][y] = spawnCell(maxSize, minSize, growthRate);
+    }
+  }
+
+  return cells;
+}
+
+/**
+ * Grow (or shrink) the given cell based on its growth rate.
+ *
+ * @param {object} currentCell the cell to grow or shrink
+ * @returns {object} a new cell object that has grown (or shrank)
+ */
+function nextCellBehavior(currentCell) {
+  let { size, growth, maxSize, minSize } = currentCell;
+  size = size + growth;
+
+  // Make sure the new size fits within the cell's maximum and minimum
+  if (growth > 0) {
+    size = Math.min(size, maxSize);
+  } else {
+    size = Math.max(size, minSize);
+  }
+
+  // If the new size is at the cell's maximum or minimum size, reverse the
+  // direction of growth.
+  if (size === minSize || size === maxSize) {
+    growth = growth * -1;
+  }
+
+  return {
+    size,
+    growth,
+    maxSize,
+    minSize,
+  };
+}
+
+/**
+ * Create a new behavior grid where each cell in the given grid has been
+ * resized according to its current growth rate.
+ *
+ * @param {Array<Array<object>>} currentState
+ * @returns {Array<Array<object>>} a two dimensional array of the cells
+ */
+function nextBehaviorGrid(currentState) {
+  const width = currentState.length;
+  let cells = [];
+
+  for (let x = 0; x < width; x++) {
+    const height = currentState[x].length;
+    cells[x] = [];
+
+    for (let y = 0; y < height; y++) {
+      cells[x][y] = nextCellBehavior(currentState[x][y]);
+    }
+  }
+
+  return cells;
+}
+
+/**
+ * Look at the state of each cell and update the 3D visual to match.
+ * 
+ * @param {Array<Array<THREE.object>>} gridState the cell grid of cells to
+ *        render
+ * @param {Array<Array<THREE.mesh>>} gridView the corresponding grid of 3D 
+ *        visuals
+ */
+function applyBehaviorToVisuals(gridState, gridView) {
+  for (let x = 0; x < gridView.length; x++) {
+    for (let y = 0; y < gridView[x].length; y++) {
+      let size = gridState[x][y].size;
+
+      gridView[x][y].scale.set(size, size, size);
+    }
+  }
+}
+
+// This is how fast the cells will grow or shrink.
+const GROWTH_RATE = 0.015;
+
+// This is the smallest box size we'll allow.
+const MIN_CELL_SIZE = MAX_CELL_SIZE / 10;
+
+// Create the initial starting state of the cell visuals
+let state = buildBehaviorGrid(GRID_SIZE, MAX_CELL_SIZE, MIN_CELL_SIZE, GROWTH_RATE);
+
+/**
+ * Compute the changes to the cell states and update the meshes to reflect that
+ * state.
+ */
+function update() {
+  applyBehaviorToVisuals(state, cellMeshes);
+  state = nextBehaviorGrid(state);
+  cellGroup.rotation.y += ROTATION_SPEED;
+}
 ```
 
 ## HTML
@@ -28,7 +371,7 @@ If you spent some time experimenting, you can copy and paste the code here to re
     <meta charset="UTF-8" />
     <meta name="viewport" 
           content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-    <title>Generative Art with three.js</title>
+    <title>Creative coding with three.js</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script type="module" src="./index.js"></script>
   </head>

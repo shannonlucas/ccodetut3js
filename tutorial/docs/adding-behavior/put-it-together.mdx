@@ -41,12 +41,16 @@ function applyBehaviorToVisuals(gridState, gridView) {
 // This is how fast the cells will grow or shrink.
 const GROWTH_RATE = 0.015;
 
+// This is the smallest box size we'll allow.
+const MIN_CELL_SIZE = MAX_CELL_SIZE / 10;
+
 // Create the initial starting state of the cell visuals
 let state = buildBehaviorGrid(GRID_SIZE, MAX_CELL_SIZE, MIN_CELL_SIZE, GROWTH_RATE);
 
-// The number of radians the grid rotates each frame
-const ROTATION_SPEED = 0.0075;
-
+/**
+ * Compute the changes to the cell states and update the meshes to reflect that
+ * state.
+ */
 function update() {
   applyBehaviorToVisuals(state, cellVisuals);
   state = nextBehaviorGrid(state);
