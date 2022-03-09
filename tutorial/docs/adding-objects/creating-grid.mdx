@@ -21,18 +21,11 @@ Now that you have a function to create your cells, you can focus on the function
 
 Consider how many cells tall and wide the grid is; this will be the grid's "size." You'll also need to know the size the cells should be, and finally, the spacing between the cells.
 
-Some math is now required to calculate where to put each of the cells you'll be creating. The position of a mesh is actually that mesh's center point; this will affect how you calculate the position of each cell.
+Some math is required to calculate where to put each of the cells you'll be creating. The position of a mesh is actually that mesh's center point; this will affect how you calculate the position of each cell.
 
-:::warning TO BE DONE
-| TBD: Graphic Asset |
-| -- |
-| ![Math for object layout](../../static/img/asset-required.png "Math for object layout") |
-| Diagram for object layout math with an explanation of those calculations |
-:::
+The first three lines of the function below calculate where to place the cells. The total width of a cell is calculated using the size of the mesh and the size of the spacing. The total size of the grid itself is that value multiplied by the number of cells in the grid.
 
-The first three lines of the function below perform the calculations described above to let you determine where to actually position each cell on the grid.
-
-Next, the size of the cell meshes is computed. Recall from the previous section that the `buildCellVisual` function copies the information from the vector passed to it. Since every cell is the same size, and the data is copied for each cell, you only need to create a single `THREE.Vector3` with the size
+Next, a vector for the mesh size is created. Recall from the previous section that the `buildCellVisual` function copies the information from the vector passed to it. Since every cell is the same size, and the data is copied for each cell, you only need to create a single `THREE.Vector3` with the size
 information.
 
 After this, an array is created to store the cells it is about to create. Each element of this array will be another array representing a row of the grid. Each element of that inner array will be a cell mesh.

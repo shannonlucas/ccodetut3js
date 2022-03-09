@@ -43,7 +43,7 @@ When you copied the CSS for this tutorial, you may have noticed that the backgro
 
 If your lights are in the wrong place, many (or all) of the objects in your scene might be in a shadow and will be rendered as black. If your background is also black, you won't be able to see them, and it might take you some time to figure out where the problem actually is. With a background that has a slight color, you will be able to see these objects as silhouettes against that color.
 
-When you start a new project, pick a background color, even if you intend to have a black background in the finished scene.
+When you start a new project, pick a background color other than black, even if you intend to have a black background in the finished scene.
 :::
 
 ## Adding the camera
@@ -72,7 +72,7 @@ function setUpCamera() {
 
 ## Setting up the renderer
 
-The render is what actually converts your 3D scene into pixels on your display. You will use a `WebGLRenderer` for this project. WebGL is a low-level programming interface supported by modern browsers. There are other types of renderers in three.js, but they are for specific, advanced use cases that aren't covered in this tutorial.
+The renderer is what actually converts your 3D scene into pixels on your display. You will use a `WebGLRenderer` for this project. WebGL is a low-level programming interface supported by modern browsers. There are other types of renderers in three.js, but they are for specific, advanced use cases that aren't covered in this tutorial.
 
 The function below accepts the ID of an HTML `<canvas>` element as its only parameter. It then queries the HTML for that element and passes it to the renderer when you create it on the next line.
 
