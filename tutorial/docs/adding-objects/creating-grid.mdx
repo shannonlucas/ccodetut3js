@@ -19,7 +19,7 @@ Now that you have a function to create your cells, you can focus on the function
 
 ![Image of an eight-by-eight grid of squares](assets/square-grid.png "The grid")
 
-Consider how many cells tall and wide the grid is; this will be the grid's "size." You'll also need to know the size the cells should be, and finally, the spacing between the cells.
+How many cells tall and wide is the grid? This will be the grid's "size." What size are the cells? And finally, how much space is between the cells?
 
 Some math is required to calculate where to put each of the cells you'll be creating. The position of a mesh is actually that mesh's center point; this will affect how you calculate the position of each cell.
 
@@ -61,5 +61,5 @@ function buildGridMeshes(gridSize, cellSize, spacing) {
 ```
 
 :::note Arrays in JavaScript
-You may have noticed that the `cells` array is used in a row and column fashion rather than x and y like the coordinates. This is because of the way arrays work in JavaScript. To store a grid of data, you have to create an array of arrays.
+You may have noticed that the `cells` array is used in a row and column fashion rather than x and y like the coordinates. This is because of the way arrays work in JavaScript. To store a grid of data, you have to create an array of arrays. It's a general convention to conceptualize such a structure as a collection of rows that then have columns. There is, however, no technical reason you cannot build this structure as a collection of columns that have rows.
 :::

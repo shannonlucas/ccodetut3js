@@ -22,7 +22,7 @@ If you would like to experiment with the demo before moving on to the next modul
 
 * Try different values for `GRID_SIZE`. Remember that this value must be an integer. Be aware that as you increase this value, there will be a point where the animation noticeably slows down and may even cause your browser to crash.
 * The `buildCellVisual` function only creates cubes. Change the function so that it creates a shape other than a cube. For example, try creating tetrahedrons instead (using `THREE.TetrahedronGeometry`).
-* The `update` function used in this module rotates the grid on the y-axis. Add a line to the function so that the grid also rotates on the x-axis. What happens if you also rotate it on the x-axis?
+* The `update` function used in this module rotates the grid on the y-axis. Add a line to the function so that the grid also rotates on the x-axis. How does this affect the overall scene? What happens if you go a step further and also rotate it on the z-axis?
 * What if the shape of each cell was determined randomly? Modify the `buildCellVisual` function so that it creates a random shape each time it is called. Limit the possible random shapes to `THREE.BoxGeometry`, `THREE.ConeGeometry` and `THREE.SphereGeometry`.
 * Consider the logic that determines where to place the camera:
   
@@ -30,30 +30,21 @@ If you would like to experiment with the demo before moving on to the next modul
   camera.position.set(0, 0, GRID_SIZE * (MAX_CELL_SIZE + CELL_SPACING));
   ```
 
-  How might you modify the `setUpLights` function so that the position of the lights is determined by the size of your rotating grid? What happens if you accidentally place one of your lights inside the grid? _**Note**: this is an advanced exercise_.
+  How might you modify the `setUpLights` function so that the position of the lights is determined by the size of your rotating grid? What happens if you accidentally place one of your lights inside the grid? _This is an advanced exercise_.
 
 ## Additional resources
 
 * Vectors
-  * [What is a vector?][TEDED-VECTOR] - a 5-minute animated video from TED-Ed about vectors
-  * [Scalars and Vectors][NASA-VECTORS] - an overview from NASA of vectors and scalars and how they are used
-  * [An introduction to vectors][MATHINSIGHT] - a lengthier written article from Math Insight about vectors and basic vector math
+  * [What is a vector?](https://www.youtube.com/watch?v=ml4NSzCQobk) - a 5-minute animated video from TED-Ed about vectors
+  * [Scalars and Vectors](https://www.grc.nasa.gov/www/k-12/airplane/vectors.html) - an overview from NASA of vectors and scalars and how they are used
+  * [An introduction to vectors](https://mathinsight.org/vector_introduction) - a lengthier written article from Math Insight about vectors and basic vector math
 * JavaScript topics
-  * [Array.prototype.flat()][MDN-FLAT] - documentation about the `.flat()` method on arrays.
+  * [Array.prototype.flat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat) - documentation about the `.flat()` method on arrays.
 * three.js classes introduced in this section
-  * [BoxGeometry][3BOXGEOM]
-  * [Group][3GROUP]
-  * [Mesh][3MESH]
-  * [MeshStandardMaterial][3MESHMAT]
-  * [Vector3][3VEC3]
+  * [BoxGeometry](https://threejs.org/docs/index.html#api/en/geometries/BoxGeometry)
+  * [Group](https://threejs.org/docs/index.html#api/en/objects/Group)
+  * [Mesh](https://threejs.org/docs/index.html#api/en/objects/Mesh)
+  * [MeshStandardMaterial](https://threejs.org/docs/index.html#api/en/materials/MeshStandardMaterial)
+  * [Vector3](https://threejs.org/docs/index.html#api/en/math/Vector3)
 
 [CHECKPOINT]: ./checkpoint.mdx
-[TEDED-VECTOR]: https://www.youtube.com/watch?v=ml4NSzCQobk
-[NASA-VECTORS]: https://www.grc.nasa.gov/www/k-12/airplane/vectors.html
-[MATHINSIGHT]:https://mathinsight.org/vector_introduction
-[MDN-FLAT]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
-[3BOXGEOM]: https://threejs.org/docs/index.html#api/en/geometries/BoxGeometry
-[3GROUP]: https://threejs.org/docs/index.html#api/en/objects/Group
-[3MESH]: https://threejs.org/docs/index.html#api/en/objects/Mesh
-[3MESHMAT]: https://threejs.org/docs/index.html#api/en/materials/MeshStandardMaterial
-[3VEC3]: https://threejs.org/docs/index.html#api/en/math/Vector3
