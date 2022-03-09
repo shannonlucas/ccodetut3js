@@ -14,7 +14,7 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
   organizationName: 'shannonlucas', // Usually your GitHub org/user name.
-  projectName: 'generative-threejs', // Usually your repo name.
+  projectName: 'ccodetut3js', // Usually your repo name.
 
   presets: [
     [
@@ -48,7 +48,7 @@ const config = {
         },
         // items: [
         //   {
-        //     href: 'https://github.com/shannonlucas/generative-threejs',
+        //     href: 'https://github.com/shannonlucas/ccodetut3js',
         //     label: 'GitHub',
         //     position: 'right',
         //   },
