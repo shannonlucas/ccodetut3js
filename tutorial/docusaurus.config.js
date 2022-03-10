@@ -7,14 +7,16 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Creative coding with three.js',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  tagline: 'Moving cubes are where it\'s at',
+  url: 'https://shannonlucas.github.io',
+  baseUrl: '/ccodetut3js/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
-  organizationName: 'shannonlucas', // Usually your GitHub org/user name.
-  projectName: 'generative-threejs', // Usually your repo name.
+  organizationName: 'shannonlucas',
+  projectName: 'ccodetut3js',
+  trailingSlash: false,
+  deploymentBranch: 'gh-pages',
 
   presets: [
     [
@@ -46,13 +48,13 @@ const config = {
           alt: 'Site logo',
           src: 'img/logo.svg',
         },
-        // items: [
-        //   {
-        //     href: 'https://github.com/shannonlucas/generative-threejs',
-        //     label: 'GitHub',
-        //     position: 'right',
-        //   },
-        // ],
+        items: [
+          {
+            href: 'https://github.com/shannonlucas/ccodetut3js',
+            label: 'GitHub',
+            position: 'right',
+          },
+        ],
       },
       footer: {
         style: 'dark',
@@ -60,10 +62,10 @@ const config = {
           {
             title: 'Resources',
             items: [
-              // {
-              //   label: 'GitHub Repository',
-              //   href: 'https://github.com/facebook/docusaurus',
-              // },
+              {
+                label: 'GitHub Repository',
+                href: 'https://github.com/shannonlucas/ccodetut3js',
+              },
               {
                 label: 'three.js',
                 href: 'https://threejs.org/',
