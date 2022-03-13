@@ -1,5 +1,4 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
@@ -7,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Creative coding with three.js',
-  tagline: 'Moving cubes are where it\'s at',
+  tagline: 'Moving cubes are what it\'s all bout',
   url: 'https://shannonlucas.github.io',
   baseUrl: '/ccodetut3js/',
   onBrokenLinks: 'throw',
@@ -78,6 +77,9 @@ const config = {
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Shannon Lucas`,
+      },
+      tableOfContents: {
+        maxHeadingLevel: 2,
       },
       prism: {
         theme: lightCodeTheme,

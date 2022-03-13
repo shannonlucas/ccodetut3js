@@ -1,0 +1,45 @@
+---
+id: adding-lights
+title: Adding lights
+keywords:
+  - creative coding
+  - graphics
+  - javascript
+  - three.js
+  - 3D
+  - tutorial
+---
+
+Your scene needs one or more light sources so the objects in the scene will be visible. Lights can have colors and types (e.g., point lights and spotlights).
+
+Strictly speaking, lights are not required in a scene. There are situations where the absence of a light source can be used for artistic intent. For example, you could create a scene with a light background where all the objects appeared as silhouettes because there are no lights. It is also possible to create objects that glow.
+
+These are things to experiment with as you continue to explore 3D graphics. For this tutorial, you are going to use two light sources.
+
+The function below accepts a scene object (you'll create one soon) and adds two `PointLight` light sources to it. You can think of a point light as a candle: it shines equally in all directions.
+
+The parameter being passed to `PointLight` is the color of the light. This must be a string with a hexadecimal color code as you would use in HTML or CSS. The first light, `light1` is magenta, and `light2` is cyan.
+
+The lights are positioned using the `.position.set` method on each light. The `.position.set` method takes three parameters: the `x`, `y`, and `z` coordinates of the light. For now, they are positioned in an arbitrary fashion that will work for the project you are building in this tutorial.
+
+Note that this function does not return anything since it adds the lights directly to the scene object you will pass to it as a parameter.
+
+```javascript
+function setUpLights(scene) {
+  const light1 = new THREE.PointLight("#ea00d9"); // magenta
+  light1.position.set(8, 3, 4);
+  scene.add(light1);
+
+  const light2 = new THREE.PointLight("#0abdc6"); // cyan
+  light2.position.set(-6, 0, 2);
+  scene.add(light2);
+}
+```
+
+:::tip Lights and background color
+When you copied the CSS for this tutorial, you may have noticed that the background color was not black.
+
+If your lights are in the wrong place, many (or all) of the objects in your scene might be in a shadow and will be rendered as black. If your background is also black, you won't be able to see them, and it might take you some time to figure out where the problem actually is. With a background that has a slight color, you'll be able to see these objects as silhouettes against that color.
+
+When you start a new project, pick a background color other than black, even if you intend to have a black background in the finished scene.
+:::

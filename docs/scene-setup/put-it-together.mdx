@@ -1,8 +1,6 @@
 ---
 id: put-it-together
 title: Putting it together
-sidebar_position: 3
-sidebar_label: Putting it together
 keywords:
   - creative coding
   - graphics
@@ -12,9 +10,9 @@ keywords:
   - tutorial
 ---
 
-Now that you've assembled the lights, camera, and renderer, it's time to put those pieces together. You will need a function that sets up these pieces.
+Now that you've assembled the lights, camera, and renderer, it's time to put those pieces together and actually create a scene. In a 3D scene, there's an invisible container that holds everything to be rendered and everything that affects the rendering (such as your lights and camera). This container is usually just called a "scene," and it's how your computer makes sense of the objects you want to display.
 
-The function below does just that. First, the renderer and camera are created. Then, a scene object is created and passed to the `setUpLights` function you assembled earlier. All the essential parts are now in place to render a 3D scene to your display.
+The function below uses what you've assembled so far to build a scene. First, the renderer and camera are created. Then, a scene object is created and passed to the `setUpLights` function you assembled earlier. All the essential parts are now in place to render a 3D scene to your display.
 
 After setting up the lights, the function adds a quality of life enhancement to the scene. Ideally, your scene should keep its relative position and size when the browser window is resized. This inner bit of code is called an "event listener," and it gets called whenever the window is resized. It tells the camera and renderer objects about the window's new size. Event listeners are outside the scope of this tutorial, but you can find a learning resource in the [postscript][POSTSCRIPT] of this module.
 
@@ -40,7 +38,7 @@ function setUpGraphics(elementId) {
 }
 ```
 
-What remains is to actually invoke your `setUpGraphics` function to create the renderer, camera, and scene. Note that the `renderer`, `camera`, and `scene` objects created by the code below are created outside a function which makes them available to all other functions in the same JavaScript file.
+What remains is to actually invoke your `setUpGraphics` function to create the renderer, camera, and scene. The `renderer`, `camera`, and `scene` objects below are created outside a function which makes them available to all other functions in the same JavaScript file.
 
 You will make use of these values when you build the animation loop in the next section.
 
@@ -53,8 +51,7 @@ The `setUpGraphics` function also accepts the ID of an HTML `<canvas>` element a
 
 One of the goals of this tutorial is to provide you with a set of building blocks that you can later reuse in your own projects. By passing the ID of the HTML element as a parameter, you can use the same functions in projects that render to an HTML element with a different ID.
 
-You might also want to render the same graphics in more than one place on the same page. Since HTML element IDs must be unique on a page, passing the ID as a parameter allows you to reuse the function rather than creating a copy for each
-element ID.
+You might also want to render the same graphics in more than one place on the same page. Since HTML element IDs must be unique on a page, passing the ID as a parameter allows you to reuse the function rather than creating a copy for each element ID.
 :::
 
 [POSTSCRIPT]: ./postscript.mdx

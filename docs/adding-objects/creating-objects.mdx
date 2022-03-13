@@ -12,15 +12,19 @@ keywords:
   - tutorial
 ---
 
-The objects you will be working with in this tutorial are cubes. However, they don't have to be cubes, and when a generic term is more appropriate, the term "cell" will be used. Using this term will also reduce confusion about the many meanings of the term "object" in the context of graphics programming.
+## Meshes
+
+In 3D graphics, a "mesh" is a mathematical model of a thing you want to show in your scene. It combines the geometry, or shape, of a 3D object with a "material" or appearance. The mesh also contains information about where the object is located in your scene and how it is oriented. Fortunately, the vast majority of the necessary math is handled for you by three.js.
 
 ## Vectors
 
-You are about to start using vectors, and you will encounter them frequently when working with computer graphics. Vectors, as you will use them in this tutorial, are a group of numbers. You will use a three number vector to store an object's x, y, and z coordinates as a single unit. You will also use a vector to store the size of an object on its x, y, and z axes.
+You will encounter vectors frequently when working with computer graphics. Vectors, as you'll use them in this tutorial, are a group of numbers. You'll use a three number vector to store an object's x, y, and z coordinates as a single unit, and you'll also use a vector to store the size of an object on its x, y, and z axes.
 
 Thinking of vectors as a group of numbers is a helpful simplification for the time being, but if you spend more time with 3D graphics programming, you'll learn that there's far more substance to vectors. If you'd like to know more about vectors, you can find links to learning resources in the [postscript][POSTSCRIPT] of this module.
 
 ## Creating individual cells
+
+The objects you will be working with in this tutorial are cubes. However, they don't have to be cubes, and when a generic term is more appropriate, the term "cell" will be used. Using this term will also reduce confusion about the many meanings of the term "object" in the context of graphics programming.
 
 The function below builds the mesh for a single cell in your grid. In the introduction to the tutorial, you learned that meshes are mathematical models of the objects in your scene. They combine both the geometry of an object with the "material" or appearance of the object. The mesh also contains information about where the object is located in your scene and how it is oriented.
 
