@@ -1,9 +1,6 @@
 ---
 id: animation-loop
 title: The animation loop
-sidebar_label: Animation loop
-sidebar_position: 4
-pagination_label: The animation loop
 keywords:
   - animation
   - creative coding
@@ -16,21 +13,21 @@ keywords:
 
 So far, you've focused only on the mechanics of how a scene gets rendered. You'll now move on to when a scene gets rendered and updated.
 
-The animation loop is an activity that your computer carries out every time it updates, or _refreshes_, the image on your display. Programs can attach functions to this loop to cause their own graphics to be updated when your computer refreshes the display.
+The animation loop is an activity that your computer carries out every time it updates, or _refreshes_, the image on your display. With every update, your computer will ask your scene to perform any necessary updates and will then render a new image on your screen.
 
-As you progress through this section, copy and paste each block of JavaScript code at the end of the JavaScript panel of your code playground.
+This process is akin to stop-motion animation used in film. A character model is set up, a picture is taken, the stage crew makes slight movements to the model, and takes a new picture. When these pictures are shown rapidly in sequence, the viewer sees an animated scene. The principle of the animation loop is similar, but it happens in real time.
 
 ## Refresh rates and frame rates
 
 Your computer redraws the content on your display many times every second. How often this happens is referred to as the _refresh rate_. You may have seen this term in the product data for monitors or televisions with values such as 60 Hz or 120 Hz. The unit Hz (Hertz) means number of times per second. So a display with a 60 Hz refresh rate will redraw the screen 60 times every second.
 
-The _frame rate_ of your animation is how many times your animation updates each second. The frame rate is sometimes the same value as the refresh rate, but it is independent. An animation's frame rate is affected by factors such as how much detail is in the animation and how powerful the computer rendering it is.
+The _frame rate_ of your animation is how many times your animation updates each second. The frame rate is sometimes the same value as the refresh rate, but it's independent. An animation's frame rate is affected by factors such as how much detail is in the animation and how powerful the computer rendering it is.
 
 Why does this matter? You have to govern the frame rate of your animation so that it will render at the same speed on different displays. If you ignore the refresh rate, an animation that works as expected on a 60 Hz display will be twice as fast on a 120 Hz display.
 
 ## Tracking time
 
-Unfortunately, you can't simply ask what the refresh rate is or specify a desired frame rate using JavaScript. Instead, you will need to know how many frames per second you intend to draw, and you will have to keep track of the time the last frame was drawn.
+Unfortunately, you can't simply ask what the refresh rate is or specify a desired frame rate using JavaScript. Instead, you'll need to know how many frames per second you intend to draw and keep track of the time the last frame was drawn.
 
 This isn't as daunting as it sounds. Time in JavaScript is measured in milliseconds, so you need to calculate how many milliseconds there should be between frame updates. There are 1000 milliseconds in each second. Assume a target frame rate of 60 frames per second, and you can compute the frame time with the line of code below.
 
@@ -39,10 +36,10 @@ const MILLISECONDS_PER_FRAME = 1000 / 60;
 ```
 
 :::note SCREAMING_SNAKE_CASE
-The name of the variable above is written in a format known as "screaming snake case." All the letters in the variable name are in uppercase, and words are separated by an underscore character. This convention is used by three.js to indicate values that won't change and are available to all the functions in a program. This tutorial uses this convention as well. When you see a variable named this way, it is intended for use anywhere in the project's code.
+The name of the variable above is written in a format known as "screaming snake case." All the letters in the variable name are in uppercase, and words are separated by an underscore character. This convention is used by three.js to indicate values that won't change and are available to all the functions in a program. This tutorial uses this convention as well. When you see a variable named this way, it's intended for use anywhere in the project's code.
 :::
 
-Next, you will need a variable to keep track of how much time in milliseconds has passed since the last frame was rendered. Set this variable to zero since no frames have been rendered yet.
+Next, you'll need a variable to keep track of how much time in milliseconds has passed since the last frame was rendered. Set this variable to zero since no frames have been rendered yet.
 
 ```javascript
 let lastFrameTime = 0;
@@ -58,7 +55,7 @@ If enough time has passed, your animation will get updated, your scene will be r
 
 This sequence of events will repeat each time the animation loop calls this function.
 
-Take note of the `update` function on the highlighted line in this code block. You will create this function soon. Also note that you are making use of the `scene`, `camera`, and `renderer` that you created in the previous section.
+Take note of the `update` function on the highlighted line in this code block. You'll create this function soon. Also note that you are making use of the `scene`, `camera`, and `renderer` that you created in the previous section.
 
 ```javascript
 function animate(animationTime) {
@@ -85,7 +82,7 @@ Notice that the value passed to the function `setAnimationLoop` is not surrounde
 
 ## The `update` function
 
-When you created the `animate` function above, you made use of a function named `update` that you had not yet created. You will find this function below, and, as you can see, it is empty.
+When you created the `animate` function above, you made use of a function named `update` that you had not yet created. You'll find this function below, and, as you can see, it is empty.
 
 ```javascript
 function update() {
@@ -93,4 +90,4 @@ function update() {
 }
 ```
 
-As you progress through the project, you will put any code that updates your scene in this function. Controlling your frame rate is something you will do in every future project involving three.js. By moving the code that's specific to just one project into a separate function, you can now reuse the `animate` function in other projects. In fact, all the code you've assembled so far can be used with other projects as-is.
+As you progress through the project, you'll put any code that updates your scene in this function. Controlling the frame rate is something you'll do in every future project involving three.js. By moving the code that's specific to just one project into a separate function, you can now reuse the `animate` function in other projects. In fact, all the code you've assembled so far can be used with other projects as-is.

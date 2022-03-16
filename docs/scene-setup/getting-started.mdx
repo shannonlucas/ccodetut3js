@@ -1,8 +1,6 @@
 ---
-id: base-code
-title: Base code
-sidebar_position: 2
-sidebar_label: Base code
+id: getting-started
+title: Getting started
 keywords:
   - creative coding
   - graphics
@@ -12,9 +10,9 @@ keywords:
   - tutorial
 ---
 
-Since this project will run in a web browser, you will need an HTML file to provide a canvas to render graphics on, a style sheet to provide some essential styling to that HTML, and a JavaScript file for the code that will generate your graphics.
+Since this project will run in a web browser, you'll need an HTML file to provide a canvas to render graphics on, a style sheet to provide some essential styling to that HTML, and a JavaScript file for the code that will generate your graphics.
 
-All the code you will assemble in this tutorial builds on this initial foundation.
+All the code you'll assemble in this tutorial builds on this initial foundation.
 
 ## HTML
 
@@ -73,9 +71,9 @@ body {
 
 ## JavaScript
 
-To get the JavaScript code started, you will need to import the three.js library. The three.js documentation recommends importing the library from the SkyPack content delivery network (CDN). The code snippet below will import the library from that source.
+To get the JavaScript code started, you'll need to import the three.js library. The three.js documentation recommends importing the library from the SkyPack content delivery network (CDN). The code snippet below will import the library from that source.
 
-This import specifies the version that was in use when this tutorial was written (0.137.5). By historical convention, three.js is imported with the name `THREE`, and you will see it capitalized this way in other tutorials.
+This import specifies the version that was in use when this tutorial was written (0.137.5). By historical convention, three.js is imported with the name `THREE`, and you'll see it capitalized this way in other tutorials.
 
 Copy and paste this code into the JavaScript panel of your code playground.
 
@@ -84,12 +82,12 @@ import * as THREE from 'https://cdn.skypack.dev/three@v0.137.5';
 ```
 
 :::caution Always specify a version number
-If you do not explicitly specify a version, the most recently released version of three.js will be imported. Importing the latest and greatest might sound like a good idea, but updates to three.js sometimes change things in ways that can break your project. So whenever you import the library, you should specify the version you are using. This will ensure that your project continues to work even after new versions of three.js are released.
+If you do not explicitly specify a version, the most recently released version of three.js will be imported. Importing the latest and greatest might sound like a good idea, but updates to three.js sometimes change things in ways that can break your project. So whenever you import the library, you should specify the version you're using. This will ensure that your project continues to work even after new versions of three.js are released.
 :::
 
 ## Moving Forward
 
-From this point forward, you will not need to edit the HTML or CSS. You may make changes to them if you wish, but this tutorial assumes that you have not modified the HTML or CSS.
+From this point forward, you won't need to edit the HTML or CSS. You may make changes to them if you wish, but this tutorial assumes that you have not modified the HTML or CSS.
 
 Once you have copied these code blocks into their respective panels in your code playground, run the code. The result panel should now be filled with a dark purple color.
 
