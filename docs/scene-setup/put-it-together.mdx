@@ -14,7 +14,7 @@ Now that you've assembled the lights, camera, and renderer, it's time to put tho
 
 The function below uses what you've assembled so far to build a scene. First, the renderer and camera are created. Then, a scene object is created and passed to the `setUpLights` function you assembled earlier. All the essential parts are now in place to render a 3D scene to your display.
 
-After setting up the lights, the function adds a quality of life enhancement to the scene. Ideally, your scene should keep its relative position and size when the browser window is resized. This inner bit of code is called an "event listener," and it gets called whenever the window is resized. It tells the camera and renderer objects about the window's new size. Event listeners are outside the scope of this tutorial, but you can find a learning resource in the [postscript][POSTSCRIPT] of this module.
+After setting up the lights, the function adds a quality of life enhancement to the scene. Ideally, your scene should keep its relative position and size when the browser window is resized. This inner bit of code is called an "event listener," and it gets called whenever the window is resized. It tells the camera and renderer objects about the window's new size. Event listeners are outside the scope of this tutorial, but you can find a learning resource in the [postscript](postscript) of this module.
 
 Finally, the function returns an object containing the newly created renderer, camera, and scene objects as the properties `renderer`, `camera`, and `scene`, respectively.
 
@@ -53,5 +53,3 @@ One of the goals of this tutorial is to provide you with a set of building block
 
 You might also want to render the same graphics in more than one place on the same page. Since HTML element IDs must be unique on a page, passing the ID as a parameter allows you to reuse the function rather than creating a copy for each element ID.
 :::
-
-[POSTSCRIPT]: ./postscript.mdx

@@ -14,7 +14,7 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
-        'scene-setup/setting-up-scene',
+        'scene-setup/scene-setup',
         'scene-setup/getting-started',
         'scene-setup/adding-lights',
         'scene-setup/adding-camera',
