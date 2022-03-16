@@ -12,7 +12,7 @@ const sidebars = {
       type: 'category',
       label: 'Scene setup',
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         'scene-setup/setting-up-scene',
         'scene-setup/getting-started',
@@ -30,7 +30,7 @@ const sidebars = {
       type: 'category',
       label: 'Adding objects',
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         'adding-objects/adding-objects',
         'adding-objects/creating-objects',
@@ -45,7 +45,7 @@ const sidebars = {
       type: 'category',
       label: 'Adding behavior',
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         'adding-behavior/adding-behavior',
         'adding-behavior/tracking-state',
