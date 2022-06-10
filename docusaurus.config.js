@@ -13,7 +13,7 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
   organizationName: 'shannonlucas',
-  projectName: 'ccodetut3js',
+  projectName: 'ptw310',
   trailingSlash: false,
   deploymentBranch: 'gh-pages',
 
@@ -49,7 +49,7 @@ const config = {
         },
         items: [
           {
-            href: 'https://github.com/shannonlucas/ccodetut3js',
+            href: 'https://github.com/shannonlucas/ptw310',
             label: 'GitHub',
             position: 'right',
           },
@@ -63,7 +63,7 @@ const config = {
             items: [
               {
                 label: 'GitHub Repository',
-                href: 'https://github.com/shannonlucas/ccodetut3js',
+                href: 'https://github.com/shannonlucas/ptw310',
               },
               {
                 label: 'three.js',
