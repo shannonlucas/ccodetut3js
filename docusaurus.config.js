@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Creative coding with three.js',
-  tagline: 'Moving cubes are what it\'s all bout',
+  tagline: 'Moving cubes are what it\'s all about',
   url: 'https://shannonlucas.github.io',
-  baseUrl: '/ccodetut3js/',
+  baseUrl: '/ptw310/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
