@@ -1,4 +1,4 @@
-# generative-threejs
+# Creative coding with three.js
 
 This tutorial for basic creative coding building blocks in three.js was written as a technical writing project for the [UW Professional Technical Writing](https://www.pce.uw.edu/certificates/professional-technical-writing) certificate program.
 
